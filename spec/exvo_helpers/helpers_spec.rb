@@ -4,6 +4,7 @@ describe Exvo do
 
   describe ".env class method" do
     it "returns 'production' when Rails.env is set to 'production'" do
+      Kernel.const_set(:Rails, nil)
       Rails.should_receive(:env).and_return('production')
       Exvo.env.should eql('production')
     end
