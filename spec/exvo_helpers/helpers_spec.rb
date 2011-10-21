@@ -8,6 +8,12 @@ describe Exvo do
       Rails.should_receive(:env).and_return('production')
       Exvo.env.should eql('production')
     end
+
+    it "allows setting env" do
+      Exvo.env = 'test'
+      Exvo.env.should eql('test')
+      Exvo.env = nil
+    end
   end
 
   describe "host methods in production environment" do

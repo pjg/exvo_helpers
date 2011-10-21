@@ -105,4 +105,8 @@ module Exvo
     @@env ||= Merb.env if defined?(Merb)
     @@env
   end
+
+  def self.env=(env)
+    @@env = env
+  end
 end
