@@ -4,7 +4,7 @@ describe Exvo do
 
   describe ".env class method" do
     it "returns 'production' when Rails.env is set to 'production'" do
-      Kernel.const_set(:Rails, nil)
+      Kernel.const_set(:Rails, Module)
       Rails.should_receive(:env).and_return('production')
       Exvo.env.should eql('production')
     end
@@ -56,6 +56,27 @@ describe Exvo do
     specify { Exvo.cfs_host.should eql(cfs_host) }
     specify { Exvo.desktop_host.should eql(desktop_host) }
     specify { Exvo.themes_host.should eql(themes_host) }
+  end
+
+  describe "auth_host/auth_uri methods which pass to ExvoAuth gem" do
+    let(:host) { 'new.auth.exvo.com' }
+    let(:uri) { "http://#{host}"}
+
+    it "raises an error when ExvoAuth is not available" do
+      expect { Exvo.auth_uri }.to raise_error
+      expect { Exvo.auth_host }.to raise_error
+    end
+
+    it "pass-in to ExvoAuth when it is available" do
+      Kernel.const_set(:ExvoAuth, Module)
+      ExvoAuth.const_set(:Config, Module)
+
+      ExvoAuth::Config.should_receive(:host).and_return(host)
+      Exvo.auth_host.should eql(host)
+
+      ExvoAuth::Config.should_receive(:uri).and_return(uri)
+      Exvo.auth_uri.should eql(uri)
+    end
   end
 
 end

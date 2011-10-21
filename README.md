@@ -16,12 +16,13 @@ Exvo.desktop_uri  => 'http://www.exvo.local'
 Exvo.themes_uri   => 'http://themes.exvo.local'
 ```
 
-
-Note, that `auth_host` is defined in [exvo-auth](https://github.com/Exvo/Auth) gem:
+For consistency, there are also `auth_host/auth_uri` methods, that just pass execution to the [exvo-auth](https://github.com/Exvo/Auth) gem (so it's required this gem is available when using them):
 
 ```ruby
-ExvoAuth::Config.host => 'exvo.auth.local'
+Exvo.auth_host => 'exvo.auth.local'
+Exvo.auth_uri => 'http://exvo.auth.local'
 ```
+
 
 ## Overwriting
 

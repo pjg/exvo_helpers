@@ -25,6 +25,7 @@ module Exvo
     @@cfs_host = host
   end
 
+
   # DESKTOP
 
   def self.desktop_uri
@@ -50,6 +51,7 @@ module Exvo
     @@desktop_host = host
   end
 
+
   # THEMES
 
   def self.themes_uri
@@ -74,6 +76,27 @@ module Exvo
   def self.themes_host=(host)
     @@themes_host = host
   end
+
+
+  # AUTH
+
+  # pass-in to the ExvoAuth gem
+  def self.auth_uri
+    if defined?(ExvoAuth::Config) and ExvoAuth::Config.respond_to?('uri')
+      ExvoAuth::Config.uri
+    else
+      raise "Exvo.auth_uri method is available only when exvo-auth gem is available"
+    end
+  end
+
+  def self.auth_host
+    if defined?(ExvoAuth::Config) and ExvoAuth::Config.respond_to?('host')
+      ExvoAuth::Config.host
+    else
+      raise "Exvo.auth_host method is available only when exvo-auth gem is available"
+    end
+  end
+
 
   # ENV
 
