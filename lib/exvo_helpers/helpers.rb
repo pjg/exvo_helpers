@@ -7,18 +7,7 @@ module Exvo
   end
 
   def self.cfs_host
-    @@cfs_host ||= ENV['CFS_HOST']
-    @@cfs_host ||=
-      case(env)
-      when 'production'
-        'cfs.exvo.com'
-      when 'staging'
-        'staging.cfs.exvo.com'
-      else
-        'cfs.exvo.local'
-      end
-
-    @@cfs_host
+    @@cfs_host ||= ENV['CFS_HOST'] || default_opts[env.to_sym][:cfs_host]
   end
 
   def self.cfs_host=(host)
@@ -33,18 +22,7 @@ module Exvo
   end
 
   def self.desktop_host
-    @@desktop_host ||= ENV['DESKTOP_HOST']
-    @@desktop_host ||=
-      case(env)
-      when 'production'
-        'www.exvo.com'
-      when 'staging'
-        'www.exvo.co'
-      else
-        'www.exvo.local'
-      end
-
-    @@desktop_host
+    @@desktop_host ||= ENV['DESKTOP_HOST'] || default_opts[env.to_sym][:desktop_host]
   end
 
   def self.desktop_host=(host)
@@ -59,18 +37,7 @@ module Exvo
   end
 
   def self.themes_host
-    @@themes_host ||= ENV['THEMES_HOST']
-    @@themes_host ||=
-      case(env)
-      when 'production'
-        'themes.exvo.com'
-      when 'staging'
-        'staging.themes.exvo.com'
-      else
-        'themes.exvo.local'
-      end
-
-    @@themes_host
+    @@themes_host ||= ENV['THEMES_HOST'] || default_opts[env.to_sym][:themes_host]
   end
 
   def self.themes_host=(host)
@@ -108,5 +75,28 @@ module Exvo
 
   def self.env=(env)
     @@env = env
+  end
+
+
+  private
+
+  def self.default_opts
+    {
+      :production => {
+        :cfs_host => 'cfs.exvo.com',
+        :desktop_host => 'www.exvo.com',
+        :themes_host => 'themes.exvo.com'
+      },
+      :staging => {
+        :cfs_host => 'staging.cfs.exvo.com',
+        :desktop_host => 'www.exvo.co',
+        :themes_host => 'staging.themes.exvo.com'
+      },
+      :development => {
+        :cfs_host => 'cfs.exvo.local',
+        :desktop_host => 'www.exvo.local',
+        :themes_host => 'themes.exvo.local'
+      }
+    }
   end
 end
