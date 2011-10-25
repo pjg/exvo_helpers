@@ -48,7 +48,7 @@ describe Exvo do
     specify { Exvo.themes_host.should eql(themes_host) }
   end
 
-  describe "setting host directly ovevrrides the defaults" do
+  describe "setting host directly overrides the defaults" do
     let(:cfs_host) { "new.cfs.exvo.com" }
     let(:desktop_host) { "new.exvo.com" }
     let(:themes_host) { "new.themes.exvo.com" }
@@ -64,7 +64,7 @@ describe Exvo do
     specify { Exvo.themes_host.should eql(themes_host) }
   end
 
-  describe "auth_host/auth_uri methods which pass to ExvoAuth gem" do
+  describe "auth_host/auth_uri methods which pass to the ExvoAuth gem" do
     let(:host) { 'new.auth.exvo.com' }
     let(:uri) { "http://#{host}"}
 
@@ -73,7 +73,7 @@ describe Exvo do
       expect { Exvo.auth_host }.to raise_error
     end
 
-    it "pass-in to ExvoAuth when it is available" do
+    it "passes to the ExvoAuth when it is available" do
       Kernel.const_set(:ExvoAuth, Module)
       ExvoAuth.const_set(:Config, Module)
 
