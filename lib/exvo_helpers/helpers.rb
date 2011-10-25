@@ -96,6 +96,11 @@ module Exvo
         :cfs_host => 'cfs.exvo.local',
         :desktop_host => 'www.exvo.local',
         :themes_host => 'themes.exvo.local'
+      },
+      :test => {
+        :cfs_host => 'cfs.exvo.local',
+        :desktop_host => 'www.exvo.local',
+        :themes_host => 'themes.exvo.local'
       }
     }
   end
