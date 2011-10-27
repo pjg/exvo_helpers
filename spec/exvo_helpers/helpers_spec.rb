@@ -6,24 +6,24 @@ describe Exvo do
     it "returns 'production' when Rails.env is set to 'production'" do
       Kernel.const_set(:Rails, Module)
       Rails.should_receive(:env).and_return('production')
-      Exvo.env.should eql('production')
+      Exvo::Helpers.env.should eql('production')
     end
 
     it "allows setting env" do
-      Exvo.env = 'test'
-      Exvo.env.should eql('test')
-      Exvo.env = nil
+      Exvo::Helpers.env = 'test'
+      Exvo::Helpers.env.should eql('test')
+      Exvo::Helpers.env = nil
     end
   end
 
   describe "host methods in production environment" do
     before do
-      Exvo.should_receive(:env).and_return('production')
+      Exvo::Helpers.should_receive(:env).and_return('production')
     end
 
-    specify { Exvo.themes_host.should eql('themes.exvo.com') }
-    specify { Exvo.cfs_host.should eql('cfs.exvo.com') }
-    specify { Exvo.desktop_host.should eql('www.exvo.com') }
+    specify { Exvo::Helpers.themes_host.should eql('themes.exvo.com') }
+    specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
+    specify { Exvo::Helpers.desktop_host.should eql('www.exvo.com') }
   end
 
   describe "ENV setting overrides the defaults" do
@@ -33,9 +33,9 @@ describe Exvo do
 
     before do
       # clear any previous memoization
-      Exvo.cfs_host = nil
-      Exvo.desktop_host = nil
-      Exvo.themes_host = nil
+      Exvo::Helpers.cfs_host = nil
+      Exvo::Helpers.desktop_host = nil
+      Exvo::Helpers.themes_host = nil
 
       # set ENV
       ENV["CFS_HOST"] = cfs_host
@@ -43,9 +43,9 @@ describe Exvo do
       ENV["THEMES_HOST"] = themes_host
     end
 
-    specify { Exvo.cfs_host.should eql(cfs_host) }
-    specify { Exvo.desktop_host.should eql(desktop_host) }
-    specify { Exvo.themes_host.should eql(themes_host) }
+    specify { Exvo::Helpers.cfs_host.should eql(cfs_host) }
+    specify { Exvo::Helpers.desktop_host.should eql(desktop_host) }
+    specify { Exvo::Helpers.themes_host.should eql(themes_host) }
   end
 
   describe "setting host directly overrides the defaults" do
@@ -54,14 +54,14 @@ describe Exvo do
     let(:themes_host) { "new.themes.exvo.com" }
 
     before do
-      Exvo.cfs_host = cfs_host
-      Exvo.desktop_host = desktop_host
-      Exvo.themes_host = themes_host
+      Exvo::Helpers.cfs_host = cfs_host
+      Exvo::Helpers.desktop_host = desktop_host
+      Exvo::Helpers.themes_host = themes_host
     end
 
-    specify { Exvo.cfs_host.should eql(cfs_host) }
-    specify { Exvo.desktop_host.should eql(desktop_host) }
-    specify { Exvo.themes_host.should eql(themes_host) }
+    specify { Exvo::Helpers.cfs_host.should eql(cfs_host) }
+    specify { Exvo::Helpers.desktop_host.should eql(desktop_host) }
+    specify { Exvo::Helpers.themes_host.should eql(themes_host) }
   end
 
   describe "auth_host/auth_uri methods which pass to the ExvoAuth gem" do
@@ -69,8 +69,8 @@ describe Exvo do
     let(:uri) { "http://#{host}"}
 
     it "raises an error when ExvoAuth is not available" do
-      expect { Exvo.auth_uri }.to raise_error
-      expect { Exvo.auth_host }.to raise_error
+      expect { Exvo::Helpers.auth_uri }.to raise_error
+      expect { Exvo::Helpers.auth_host }.to raise_error
     end
 
     it "passes to the ExvoAuth when it is available" do
@@ -78,10 +78,10 @@ describe Exvo do
       ExvoAuth.const_set(:Config, Module)
 
       ExvoAuth::Config.should_receive(:host).and_return(host)
-      Exvo.auth_host.should eql(host)
+      Exvo::Helpers.auth_host.should eql(host)
 
       ExvoAuth::Config.should_receive(:uri).and_return(uri)
-      Exvo.auth_uri.should eql(uri)
+      Exvo::Helpers.auth_uri.should eql(uri)
     end
   end
 
