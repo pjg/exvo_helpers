@@ -2,6 +2,21 @@ module Exvo
 
   module Helpers
 
+    # CDN BUNDLES
+
+    def self.cdn_uri
+      "http://#{cdn_host}"
+    end
+
+    def self.cdn_host
+      @@cdn_host ||= ENV['CDN_HOST'] || default_opts[env.to_sym][:cdn_host]
+    end
+
+    def self.cdn_host=(host)
+      @@cdn_host = host
+    end
+
+
     # CFS
 
     def self.cfs_uri
@@ -85,21 +100,25 @@ module Exvo
     def self.default_opts
       {
         :production => {
+          :cdn_host => 'cdn.exvo.com',
           :cfs_host => 'cfs.exvo.com',
           :desktop_host => 'www.exvo.com',
           :themes_host => 'themes.exvo.com'
         },
         :staging => {
+          :cdn_host => 'staging.cdn.exvo.com',
           :cfs_host => 'staging.cfs.exvo.com',
           :desktop_host => 'www.exvo.co',
           :themes_host => 'staging.themes.exvo.com'
         },
         :development => {
+          :cdn_host => 'www.exvo.local',
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'www.exvo.local',
           :themes_host => 'themes.exvo.local'
         },
         :test => {
+          :cdn_host => 'www.exvo.local',
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'www.exvo.local',
           :themes_host => 'themes.exvo.local'
