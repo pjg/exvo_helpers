@@ -1,15 +1,20 @@
 require 'spec_helper'
 
+class SpecViewHelper
+  include Exvo::ViewHelpers
+end
+
 describe Exvo::ViewHelpers do
 
-  describe "bundles" do
-    it "should return javascript based on env" do
-      Kernel.const_set(:Rails, Module)
-      Rails.should_receive(:env).and_return('production')
-      Exvo::ViewHelpers.module_eval do
-        module_function(:javascript_bundle_include_tag)
-      end
-      Exvo::ViewHelpers.javascript_bundle_include_tag("plugins").should eql("cfs_host") 
+  describe "javascript_bundle_include_tag" do
+
+    let(:view_helper) { SpecViewHelper.new }
+
+    it "should return the javascript_include_tag based on env" do
+      Exvo::Helpers.stub(:env).and_return('production')
+      view_helper.should_receive(:javascript_include_tag).with("//cdn.exvo.com/javascripts/plugins.js")
+      view_helper.javascript_bundle_include_tag("plugins")
     end
   end
+
 end

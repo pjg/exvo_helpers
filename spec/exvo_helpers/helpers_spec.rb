@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Exvo do
+describe Exvo::Helpers do
 
   describe ".env class method" do
     it "returns 'production' when Rails.env is set to 'production'" do
@@ -18,7 +18,7 @@ describe Exvo do
 
   describe "host methods in production environment" do
     before do
-      Exvo::Helpers.should_receive(:env).and_return('production')
+      Exvo::Helpers.stub(:env).and_return('production')
     end
 
     specify { Exvo::Helpers.cdn_host.should eql('cdn.exvo.com') }
