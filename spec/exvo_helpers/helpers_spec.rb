@@ -16,6 +16,17 @@ describe Exvo::Helpers do
     end
   end
 
+  describe "uri methods in production environment" do
+    before do
+      Exvo::Helpers.stub(:env).and_return('production')
+    end
+
+    specify { Exvo::Helpers.cdn_uri.should match('cdn.exvo.com') }
+    specify { Exvo::Helpers.cfs_uri.should match('cfs.exvo.com') }
+    specify { Exvo::Helpers.desktop_uri.should match('www.exvo.com') }
+    specify { Exvo::Helpers.themes_uri.should match('themes.exvo.com') }
+  end
+
   describe "host methods in production environment" do
     before do
       Exvo::Helpers.stub(:env).and_return('production')
