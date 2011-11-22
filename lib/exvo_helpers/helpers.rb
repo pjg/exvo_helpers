@@ -2,63 +2,40 @@ module Exvo
 
   module Helpers
 
-    # CDN BUNDLES
+    # Dynamically define class methods
+    class << self
 
-    def self.cdn_uri
-      "http://#{cdn_host}"
-    end
+      %w(cdn cfs desktop themes).each do |service|
 
-    def self.cdn_host
-      @@cdn_host ||= ENV['CDN_HOST'] || default_opts[env.to_sym][:cdn_host]
-    end
+        # def self.cdn_uri
+        #   "http://#{cdn_host}"
+        # end
+        define_method "#{service}_uri" do
+          "http://#{ send("#{service}_host") }"
+        end
 
-    def self.cdn_host=(host)
-      @@cdn_host = host
-    end
+        # def self.cdn_host
+        #   @@cdn_host ||= ENV['CDN_HOST'] || default_opts[env.to_sym][:cdn_host]
+        # end
+        define_method "#{service}_host" do
+          # poor man's metaprogramming memoization - if it's defined (and not nil!) return it; if not, set it
+          if class_variable_defined?("@@#{service}_host") and class_variable_get("@@#{service}_host")
+            class_variable_get("@@#{service}_host")
+          else
+            host = ENV["#{service.upcase}_HOST"] || default_opts[env.to_sym]["#{service}_host".to_sym]
+            class_variable_set("@@#{service}_host", host)
+          end
+        end
 
+        # def self.cdn_host=(host)
+        #   @@cdn_host = host
+        # end
+        define_method "#{service}_host=" do |host|
+          class_variable_set("@@#{service}_host", host)
+        end
 
-    # CFS
+      end
 
-    def self.cfs_uri
-      "http://#{cfs_host}"
-    end
-
-    def self.cfs_host
-      @@cfs_host ||= ENV['CFS_HOST'] || default_opts[env.to_sym][:cfs_host]
-    end
-
-    def self.cfs_host=(host)
-      @@cfs_host = host
-    end
-
-
-    # DESKTOP
-
-    def self.desktop_uri
-      "http://#{desktop_host}"
-    end
-
-    def self.desktop_host
-      @@desktop_host ||= ENV['DESKTOP_HOST'] || default_opts[env.to_sym][:desktop_host]
-    end
-
-    def self.desktop_host=(host)
-      @@desktop_host = host
-    end
-
-
-    # THEMES
-
-    def self.themes_uri
-      "http://#{themes_host}"
-    end
-
-    def self.themes_host
-      @@themes_host ||= ENV['THEMES_HOST'] || default_opts[env.to_sym][:themes_host]
-    end
-
-    def self.themes_host=(host)
-      @@themes_host = host
     end
 
 
