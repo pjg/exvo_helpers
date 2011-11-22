@@ -25,6 +25,11 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.cfs_uri.should match('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_uri.should match('www.exvo.com') }
     specify { Exvo::Helpers.themes_uri.should match('themes.exvo.com') }
+    specify { Exvo::Helpers.blog_uri.should match('blog.exvo.com') }
+    specify { Exvo::Helpers.contacts_uri.should match('contacts.exvo.com') }
+    specify { Exvo::Helpers.inbox_uri.should match('inbox.exvo.com') }
+    specify { Exvo::Helpers.music_uri.should match('music.exvo.com') }
+    specify { Exvo::Helpers.pics_uri.should match('pics.exvo.com') }
   end
 
   describe "host methods in production environment" do
@@ -36,51 +41,37 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_host.should eql('www.exvo.com') }
     specify { Exvo::Helpers.themes_host.should eql('themes.exvo.com') }
+    specify { Exvo::Helpers.blog_host.should eql('blog.exvo.com') }
+    specify { Exvo::Helpers.contacts_host.should eql('contacts.exvo.com') }
+    specify { Exvo::Helpers.inbox_host.should eql('inbox.exvo.com') }
+    specify { Exvo::Helpers.music_host.should eql('music.exvo.com') }
+    specify { Exvo::Helpers.pics_host.should eql('pics.exvo.com') }
   end
 
   describe "ENV setting overrides the defaults" do
+    # as all methods are defined the same using metaprogramming, only testing for 1 is enough
     let(:cdn_host) { "test.cdn.exvo.com" }
-    let(:cfs_host) { "test.cfs.exvo.com" }
-    let(:desktop_host) { "test.exvo.com" }
-    let(:themes_host) { "test.themes.exvo.com" }
 
     before do
       # clear any previous memoization
       Exvo::Helpers.cdn_host = nil
-      Exvo::Helpers.cfs_host = nil
-      Exvo::Helpers.desktop_host = nil
-      Exvo::Helpers.themes_host = nil
 
       # set ENV
       ENV["CDN_HOST"] = cdn_host
-      ENV["CFS_HOST"] = cfs_host
-      ENV["DESKTOP_HOST"] = desktop_host
-      ENV["THEMES_HOST"] = themes_host
     end
 
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
-    specify { Exvo::Helpers.cfs_host.should eql(cfs_host) }
-    specify { Exvo::Helpers.desktop_host.should eql(desktop_host) }
-    specify { Exvo::Helpers.themes_host.should eql(themes_host) }
   end
 
   describe "setting host directly overrides the defaults" do
+    # as all methods are defined the same using metaprogramming, only testing for 1 is enough
     let(:cdn_host) { "new.cdn.exvo.com" }
-    let(:cfs_host) { "new.cfs.exvo.com" }
-    let(:desktop_host) { "new.exvo.com" }
-    let(:themes_host) { "new.themes.exvo.com" }
 
     before do
       Exvo::Helpers.cdn_host = cdn_host
-      Exvo::Helpers.cfs_host = cfs_host
-      Exvo::Helpers.desktop_host = desktop_host
-      Exvo::Helpers.themes_host = themes_host
     end
 
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
-    specify { Exvo::Helpers.cfs_host.should eql(cfs_host) }
-    specify { Exvo::Helpers.desktop_host.should eql(desktop_host) }
-    specify { Exvo::Helpers.themes_host.should eql(themes_host) }
   end
 
   describe "auth_host/auth_uri methods which pass to the ExvoAuth gem" do
