@@ -2,7 +2,7 @@
 
 Ruby gem providing helper methods for various Exvo apps/services. It takes into account the Rails.env (or Merb.env). Also allows overwriting of the defaults by ENV variables (and directly too, see below).
 
-## Examples
+## Helpers
 
 Results are from the 'development' Rails environment:
 
@@ -36,7 +36,7 @@ Exvo::Helpers.auth_uri  => 'http://exvo.auth.local'
 ```
 
 
-## Overwriting
+### Overwriting
 
 There are two ways to do it. One is by the means of ENV variables (preferred one):
 
@@ -66,6 +66,30 @@ Exvo::Helpers.music_host    = 'test.music.exvo.local'
 Exvo::Helpers.pics_host     = 'test.pics.exvo.local'
 ```
 
+
+## View helpers
+
+There is a `javascript_bundle_include_tag` view helper function, which includes a different Desktop JS bundles depending on current environment.
+
+The following declaraions:
+
+```ruby
+= javascript_bundle_include_tag("plugins")
+= javascript_bundle_include_tag("utils")
+= javascript_bundle_include_tag("widgets")
+= javascript_bundle_include_tag("dock")
+= javascript_bundle_include_tag("uploader")
+```
+
+will output this for the 'development' environment:
+
+```html
+<script src="http://www.exvo.local/javascripts/bundles/plugins.js" type="text/javascript"></script>
+<script src="http://www.exvo.local/javascripts/bundles/utils.js" type="text/javascript"></script>
+<script src="http://www.exvo.local/javascripts/bundles/widgets.js" type="text/javascript"></script>
+<script src="http://www.exvo.local/javascripts/bundles/dock.js" type="text/javascript"></script>
+<script src="http://www.exvo.local/javascripts/bundles/uploader.js" type="text/javascript"></script>
+```
 
 
 Copyright © 2011 Exvo.com Development BV
