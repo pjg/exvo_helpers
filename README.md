@@ -73,6 +73,7 @@ There are also all kinds of view helpers available, which output html tags based
 
 All examples are for the 'development' environment.
 
+
 ### javascript_bundle_include_tag
 
 ```ruby
@@ -92,6 +93,22 @@ All examples are for the 'development' environment.
 <script src="http://www.exvo.local/javascripts/bundles/dock.js" type="text/javascript"></script>
 <script src="http://www.exvo.local/javascripts/bundles/uploader.js" type="text/javascript"></script>
 ```
+
+
+### themes_stylesheet_link_tag
+
+Note, that this helper does not support full API of Rails' `stylesheet_link_tag` (works best with only one CSS path as argument).
+
+```ruby
+= themes_stylesheet_link_tag "frost/all", :madia => 'all'
+```
+
+=>
+
+```html
+<link href="http://themes.exvo.local/stylesheets/themes/frost/all.css" media="all" rel="stylesheet" type="text/css" />
+```
+
 
 ### themes_image_tag
 
