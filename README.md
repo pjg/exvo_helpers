@@ -69,9 +69,11 @@ Exvo::Helpers.pics_host     = 'test.pics.exvo.local'
 
 ## View helpers
 
-There is a `javascript_bundle_include_tag` view helper function, which includes a different Desktop JS bundles depending on current environment.
+There are also all kinds of view helpers available, which output html tags based on `env`.
 
-The following declaraions:
+All examples are for the 'development' environment.
+
+### javascript_bundle_include_tag
 
 ```ruby
 = javascript_bundle_include_tag("plugins")
@@ -81,7 +83,7 @@ The following declaraions:
 = javascript_bundle_include_tag("uploader")
 ```
 
-will output this for the 'development' environment:
+=>
 
 ```html
 <script src="http://www.exvo.local/javascripts/bundles/plugins.js" type="text/javascript"></script>
@@ -89,6 +91,18 @@ will output this for the 'development' environment:
 <script src="http://www.exvo.local/javascripts/bundles/widgets.js" type="text/javascript"></script>
 <script src="http://www.exvo.local/javascripts/bundles/dock.js" type="text/javascript"></script>
 <script src="http://www.exvo.local/javascripts/bundles/uploader.js" type="text/javascript"></script>
+```
+
+### themes_image_tag
+
+```ruby
+= themes_image_tag("icons/exvo.png", :alt => 'Exvo')
+```
+
+=>
+
+```html
+<img alt="Exvo" src="http://themes.exvo.local/stylesheets/images/icons/exvo.png" />
 ```
 
 

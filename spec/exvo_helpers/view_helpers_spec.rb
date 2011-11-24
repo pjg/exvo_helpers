@@ -10,10 +10,18 @@ describe Exvo::ViewHelpers do
 
     let(:view_helper) { SpecViewHelper.new }
 
-    it "should return the javascript_include_tag based on env" do
+    before do
       Exvo::Helpers.stub(:env).and_return('production')
+    end
+
+    it "returns a javascript_include_tag based on env" do
       view_helper.should_receive(:javascript_include_tag).with("http://cdn.exvo.com/javascripts/plugins.js")
       view_helper.javascript_bundle_include_tag("plugins")
+    end
+
+    it "returns an image_tag based on env" do
+      view_helper.should_receive(:image_tag).with("http://themes.exvo.com/stylesheets/images/icons/exvo.png", {:alt => 'Exvo'})
+      view_helper.themes_image_tag("icons/exvo.png", :alt => 'Exvo')
     end
   end
 
