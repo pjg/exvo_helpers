@@ -55,7 +55,7 @@ ENV['PICS_HOST']     = 'test.pics.exvo.local'
 The other one is to set it in the application's config file:
 
 ```ruby
-Exvo::Helpers.cdn_host      = 'test.cfs.exvo.com'
+Exvo::Helpers.cdn_host      = 'test.cdn.exvo.com'
 Exvo::Helpers.cfs_host      = 'test.cfs.exvo.com'
 Exvo::Helpers.desktop_host  = 'test.exvo.com'
 Exvo::Helpers.themes_host   = 'test.themes.exvo.com'
