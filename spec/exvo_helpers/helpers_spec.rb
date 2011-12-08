@@ -30,6 +30,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.inbox_uri.should match('inbox.exvo.com') }
     specify { Exvo::Helpers.music_uri.should match('music.exvo.com') }
     specify { Exvo::Helpers.pics_uri.should match('pics.exvo.com') }
+    specify { Exvo::Helpers.preview_uri.should match('preview.exvo.com') }
   end
 
   describe "host methods in production environment" do
@@ -46,6 +47,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.inbox_host.should eql('inbox.exvo.com') }
     specify { Exvo::Helpers.music_host.should eql('music.exvo.com') }
     specify { Exvo::Helpers.pics_host.should eql('pics.exvo.com') }
+    specify { Exvo::Helpers.preview_host.should eql('preview.exvo.com') }
   end
 
   describe "ENV setting overrides the defaults" do

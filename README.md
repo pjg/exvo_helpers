@@ -16,6 +16,7 @@ Exvo::Helpers.contacts_host => 'contacts.exvo.local'
 Exvo::Helpers.inbox_host    => 'inbox.exvo.local'
 Exvo::Helpers.music_host    => 'music.exvo.local'
 Exvo::Helpers.pics_host     => 'pics.exvo.local'
+Exvo::Helpers.preview_host  => 'preview.exvo.local'
 
 Exvo::Helpers.cdn_uri      => 'http://www.exvo.local'
 Exvo::Helpers.cfs_uri      => 'http://cfs.exvo.local'
@@ -26,6 +27,7 @@ Exvo::Helpers.contacts_uri => 'http://contacts.exvo.local'
 Exvo::Helpers.inbox_uri    => 'http://inbox.exvo.local'
 Exvo::Helpers.music_uri    => 'http://music.exvo.local'
 Exvo::Helpers.pics_uri     => 'http://pics.exvo.local'
+Exvo::Helpers.preview_uri  => 'http://preview.exvo.local'
 ```
 
 For consistency, there are also read-only `auth_host/auth_uri` methods, that just pass execution to the [exvo-auth](https://github.com/Exvo/Auth) gem (so it's required that exvo-auth gem is available when using them):
@@ -50,6 +52,7 @@ ENV['CONTACTS_HOST'] = 'test.contacts.exvo.local'
 ENV['INBOX_HOST']    = 'test.inbox.exvo.local'
 ENV['MUSIC_HOST']    = 'test.music.exvo.local'
 ENV['PICS_HOST']     = 'test.pics.exvo.local'
+ENV['PREVIEW_HOST']  = 'test.preview.exvo.local'
 ```
 
 The other one is to set it in the application's config file:
@@ -64,6 +67,7 @@ Exvo::Helpers.contacts_host = 'test.contacts.exvo.local'
 Exvo::Helpers.inbox_host    = 'test.inbox.exvo.local'
 Exvo::Helpers.music_host    = 'test.music.exvo.local'
 Exvo::Helpers.pics_host     = 'test.pics.exvo.local'
+Exvo::Helpers.preview_host  = 'test.preview.exvo.local'
 ```
 
 

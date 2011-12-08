@@ -5,7 +5,7 @@ module Exvo
     # Dynamically define class methods
     class << self
 
-      %w(cdn cfs desktop themes blog contacts inbox music pics).each do |service|
+      %w(cdn cfs desktop themes blog contacts inbox music pics preview).each do |service|
 
         # def self.cdn_uri
         #   "http://#{cdn_host}"
@@ -85,7 +85,8 @@ module Exvo
           :contacts_host => 'contacts.exvo.com',
           :inbox_host => 'inbox.exvo.com',
           :music_host => 'music.exvo.com',
-          :pics_host => 'pics.exvo.com'
+          :pics_host => 'pics.exvo.com',
+          :preview_host => 'preview.exvo.com'
         },
         :staging => {
           :cdn_host => 'staging.cdn.exvo.com',
@@ -96,7 +97,8 @@ module Exvo
           :contacts_host => 'exvo-contacts-staging.heroku.com',
           :inbox_host => 'exvo-inbox-staging.heroku.com',
           :music_host => 'exvo-music-staging.heroku.com',
-          :pics_host => 'exvo-pictures-staging.heroku.com'
+          :pics_host => 'exvo-pictures-staging.heroku.com',
+          :preview_host => 'staging.preview.exvo.com'
         },
         :development => {
           :cdn_host => 'www.exvo.local',
@@ -107,7 +109,8 @@ module Exvo
           :contacts_host => 'contacts.exvo.local',
           :inbox_host => 'inbox.exvo.local',
           :music_host => 'music.exvo.local',
-          :pics_host => 'pics.exvo.local'
+          :pics_host => 'pics.exvo.local',
+          :preview_host => 'preview.exvo.local'
         },
         :test => {
           :cdn_host => 'www.exvo.local',
@@ -118,7 +121,8 @@ module Exvo
           :contacts_host => 'contacts.exvo.local',
           :inbox_host => 'inbox.exvo.local',
           :music_host => 'music.exvo.local',
-          :pics_host => 'pics.exvo.local'
+          :pics_host => 'pics.exvo.local',
+          :preview_host => 'preview.exvo.local'
         }
       }
     end
