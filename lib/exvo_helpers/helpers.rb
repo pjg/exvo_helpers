@@ -8,10 +8,14 @@ module Exvo
       %w(cdn cfs desktop themes blog contacts inbox music pics preview).each do |service|
 
         # def self.cdn_uri
-        #   "http://#{cdn_host}"
+        #   protocol = ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production ? "//" : "http://"
+        #   protocol + cdn_host
         # end
         define_method "#{service}_uri" do
-          "http://#{ send("#{service}_host") }"
+          # special link starting with '//' in production so that the webserver can choose between HTTP and HTTPS
+          # but only for those apps/services that have proper SSL support (i.e. valid certificates)
+          protocol = ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production ? "//" : "http://"
+          protocol + send("#{service}_host")
         end
 
         # def self.cdn_host
