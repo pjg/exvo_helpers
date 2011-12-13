@@ -77,7 +77,7 @@ module Exvo
     def self.default_opts
       {
         :production => {
-          :cdn_host => 'cdn.exvo.com',
+          :cdn_host => 'd33gjlr95u9pgf.cloudfront.net', # cloudfront.net so we can use https (cdn.exvo.com via https does not work properly)
           :cfs_host => 'cfs.exvo.com',
           :desktop_host => 'www.exvo.com',
           :themes_host => 'themes.exvo.com',
@@ -89,7 +89,7 @@ module Exvo
           :preview_host => 'preview.exvo.com'
         },
         :staging => {
-          :cdn_host => 'staging.cdn.exvo.com',
+          :cdn_host => 'd1by559a994699.cloudfront.net',
           :cfs_host => 'staging.cfs.exvo.com',
           :desktop_host => 'www.exvo.co',
           :themes_host => 'staging.themes.exvo.com',

@@ -15,7 +15,7 @@ describe Exvo::ViewHelpers do
     end
 
     it "returns a javascript_include_tag based on env" do
-      view_helper.should_receive(:javascript_include_tag).with("http://cdn.exvo.com/javascripts/plugins.js")
+      view_helper.should_receive(:javascript_include_tag).with("http://d33gjlr95u9pgf.cloudfront.net/javascripts/plugins.js")
       view_helper.javascript_bundle_include_tag("plugins")
     end
 

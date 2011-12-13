@@ -21,7 +21,7 @@ describe Exvo::Helpers do
       Exvo::Helpers.stub(:env).and_return('production')
     end
 
-    specify { Exvo::Helpers.cdn_uri.should match('cdn.exvo.com') }
+    specify { Exvo::Helpers.cdn_uri.should match('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_uri.should match('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_uri.should match('www.exvo.com') }
     specify { Exvo::Helpers.themes_uri.should match('themes.exvo.com') }
@@ -38,7 +38,7 @@ describe Exvo::Helpers do
       Exvo::Helpers.stub(:env).and_return('production')
     end
 
-    specify { Exvo::Helpers.cdn_host.should eql('cdn.exvo.com') }
+    specify { Exvo::Helpers.cdn_host.should eql('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_host.should eql('www.exvo.com') }
     specify { Exvo::Helpers.themes_host.should eql('themes.exvo.com') }
