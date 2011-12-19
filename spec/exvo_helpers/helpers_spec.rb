@@ -63,6 +63,10 @@ describe Exvo::Helpers do
     end
 
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
+
+    after do
+      ENV["CDN_HOST"] = nil
+    end
   end
 
   describe "setting host directly overrides the defaults" do
@@ -74,6 +78,10 @@ describe Exvo::Helpers do
     end
 
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
+
+    after do
+      Exvo::Helpers.cdn_host = nil
+    end
   end
 
   describe "auth_host/auth_uri methods which pass to the ExvoAuth gem" do
