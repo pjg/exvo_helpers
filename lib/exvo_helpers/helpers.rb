@@ -5,16 +5,24 @@ module Exvo
     # Dynamically define class methods
     class << self
 
-      %w(cdn cfs desktop themes blog contacts inbox music pics preview).each do |service|
+      %w(auth cdn cfs desktop themes blog contacts inbox music pics preview).each do |service|
 
         # def self.cdn_uri
-        #   protocol = ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production ? "//" : "http://"
+        #   protocol = 'http://'
+        #   protocol = 'https://' if service == "auth" && auth_require_ssl
+        #   protocol = '//' if ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production
         #   protocol + cdn_host
         # end
         define_method "#{service}_uri" do
+          protocol = 'http://'
+
+          # explicit https for auth
+          protocol = 'https://' if service == "auth" && send(:auth_require_ssl)
+
           # special link starting with '//' in production so that the webserver can choose between HTTP and HTTPS
           # but only for those apps/services that have proper SSL support (i.e. valid certificates)
-          protocol = ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production ? "//" : "http://"
+          protocol = '//' if ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production
+
           protocol + send("#{service}_host")
         end
 
@@ -45,21 +53,13 @@ module Exvo
 
     # AUTH
 
-    # pass-in to the ExvoAuth gem
-    def self.auth_uri
-      if defined?(ExvoAuth::Config) and ExvoAuth::Config.respond_to?('uri')
-        ExvoAuth::Config.uri
-      else
-        raise "Exvo.auth_uri method is available only when exvo-auth gem is available"
-      end
+    def self.auth_require_ssl
+      return @@auth_require_ssl if defined?(@@auth_require_ssl) && !@@auth_require_ssl.nil?
+      @@auth_require_ssl = (ENV['AUTH_REQUIRE_SSL'] == 'true') || default_opts[env.to_sym][:auth_require_ssl]
     end
 
-    def self.auth_host
-      if defined?(ExvoAuth::Config) and ExvoAuth::Config.respond_to?('host')
-        ExvoAuth::Config.host
-      else
-        raise "Exvo.auth_host method is available only when exvo-auth gem is available"
-      end
+    def self.auth_require_ssl=(require_ssl)
+      @@auth_require_ssl = require_ssl
     end
 
 
@@ -81,6 +81,8 @@ module Exvo
     def self.default_opts
       {
         :production => {
+          :auth_host => 'auth.exvo.com',
+          :auth_require_ssl => true,
           :cdn_host => 'd33gjlr95u9pgf.cloudfront.net', # cloudfront.net so we can use https (cdn.exvo.com via https does not work properly)
           :cfs_host => 'cfs.exvo.com',
           :desktop_host => 'www.exvo.com',
@@ -93,6 +95,8 @@ module Exvo
           :preview_host => 'preview.exvo.com'
         },
         :staging => {
+          :auth_host => 'staging.auth.exvo.com',
+          :auth_require_ssl => false,
           :cdn_host => 'd1by559a994699.cloudfront.net',
           :cfs_host => 'staging.cfs.exvo.com',
           :desktop_host => 'www.exvo.co',
@@ -105,6 +109,8 @@ module Exvo
           :preview_host => 'staging.preview.exvo.com'
         },
         :development => {
+          :auth_host => 'auth.exvo.local',
+          :auth_require_ssl => false,
           :cdn_host => 'www.exvo.local',
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'www.exvo.local',
@@ -117,6 +123,8 @@ module Exvo
           :preview_host => 'preview.exvo.local'
         },
         :test => {
+          :auth_host => 'auth.exvo.local',
+          :auth_require_ssl => false,
           :cdn_host => 'www.exvo.local',
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'www.exvo.local',

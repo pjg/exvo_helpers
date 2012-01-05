@@ -7,6 +7,7 @@ Ruby gem providing helper methods for various Exvo apps/services. It takes into 
 Results are from the 'development' Rails environment:
 
 ```ruby
+Exvo::Helpers.auth_host     => 'auth.exvo.local'
 Exvo::Helpers.cdn_host      => 'www.exvo.local'
 Exvo::Helpers.cfs_host      => 'cfs.exvo.local'
 Exvo::Helpers.desktop_host  => 'www.exvo.local'
@@ -18,6 +19,7 @@ Exvo::Helpers.music_host    => 'music.exvo.local'
 Exvo::Helpers.pics_host     => 'pics.exvo.local'
 Exvo::Helpers.preview_host  => 'preview.exvo.local'
 
+Exvo::Helpers.auth_uri     => 'http://auth.exvo.local'
 Exvo::Helpers.cdn_uri      => 'http://www.exvo.local'
 Exvo::Helpers.cfs_uri      => 'http://cfs.exvo.local'
 Exvo::Helpers.desktop_uri  => 'http://www.exvo.local'
@@ -30,44 +32,47 @@ Exvo::Helpers.pics_uri     => 'http://pics.exvo.local'
 Exvo::Helpers.preview_uri  => 'http://preview.exvo.local'
 ```
 
-For consistency, there are also read-only `auth_host/auth_uri` methods, that just pass execution to the [exvo-auth](https://github.com/Exvo/Auth) gem (so it's required that exvo-auth gem is available when using them):
+There is also an `auth_require_ssl` method, which takes true/false values and is used to construct `auth_uri`. It returns `true` in production and `false` in all other environments.
 
 ```ruby
-Exvo::Helpers.auth_host => 'exvo.auth.local'
-Exvo::Helpers.auth_uri  => 'http://exvo.auth.local'
+Exvo::Helpers.auth_require_ssl => false
 ```
 
 
-### Overwriting
+### Overwriting the defaults
 
-There are two ways to do it. One is by the means of ENV variables (preferred one):
+There are two ways to do it. One is by the means of ENV variables (the preferred method):
 
 ```ruby
-ENV['CDN_HOST']      = 'test.cdn.exvo.com'
-ENV['CFS_HOST']      = 'test.cfs.exvo.com'
-ENV['DESKTOP_HOST']  = 'test.exvo.com'
-ENV['THEMES_HOST']   = 'test.themes.exvo.com'
-ENV['BLOG_HOST']     = 'test.blog.exvo.local'
-ENV['CONTACTS_HOST'] = 'test.contacts.exvo.local'
-ENV['INBOX_HOST']    = 'test.inbox.exvo.local'
-ENV['MUSIC_HOST']    = 'test.music.exvo.local'
-ENV['PICS_HOST']     = 'test.pics.exvo.local'
-ENV['PREVIEW_HOST']  = 'test.preview.exvo.local'
+ENV['AUTH_REQUIRE_SSL'] = 'true'
+ENV['AUTH_HOST']        = 'test.auth.exvo.com'
+ENV['CDN_HOST']         = 'test.cdn.exvo.com'
+ENV['CFS_HOST']         = 'test.cfs.exvo.com'
+ENV['DESKTOP_HOST']     = 'test.exvo.com'
+ENV['THEMES_HOST']      = 'test.themes.exvo.com'
+ENV['BLOG_HOST']        = 'test.blog.exvo.local'
+ENV['CONTACTS_HOST']    = 'test.contacts.exvo.local'
+ENV['INBOX_HOST']       = 'test.inbox.exvo.local'
+ENV['MUSIC_HOST']       = 'test.music.exvo.local'
+ENV['PICS_HOST']        = 'test.pics.exvo.local'
+ENV['PREVIEW_HOST']     = 'test.preview.exvo.local'
 ```
 
 The other one is to set it in the application's config file:
 
 ```ruby
-Exvo::Helpers.cdn_host      = 'test.cdn.exvo.com'
-Exvo::Helpers.cfs_host      = 'test.cfs.exvo.com'
-Exvo::Helpers.desktop_host  = 'test.exvo.com'
-Exvo::Helpers.themes_host   = 'test.themes.exvo.com'
-Exvo::Helpers.blog_host     = 'test.blog.exvo.local'
-Exvo::Helpers.contacts_host = 'test.contacts.exvo.local'
-Exvo::Helpers.inbox_host    = 'test.inbox.exvo.local'
-Exvo::Helpers.music_host    = 'test.music.exvo.local'
-Exvo::Helpers.pics_host     = 'test.pics.exvo.local'
-Exvo::Helpers.preview_host  = 'test.preview.exvo.local'
+Exvo::Helpers.auth_require_ssl = true
+Exvo::Helpers.auth_host        = 'test.auth.exvo.com'
+Exvo::Helpers.cdn_host         = 'test.cdn.exvo.com'
+Exvo::Helpers.cfs_host         = 'test.cfs.exvo.com'
+Exvo::Helpers.desktop_host     = 'test.exvo.com'
+Exvo::Helpers.themes_host      = 'test.themes.exvo.com'
+Exvo::Helpers.blog_host        = 'test.blog.exvo.local'
+Exvo::Helpers.contacts_host    = 'test.contacts.exvo.local'
+Exvo::Helpers.inbox_host       = 'test.inbox.exvo.local'
+Exvo::Helpers.music_host       = 'test.music.exvo.local'
+Exvo::Helpers.pics_host        = 'test.pics.exvo.local'
+Exvo::Helpers.preview_host     = 'test.preview.exvo.local'
 ```
 
 
@@ -127,4 +132,4 @@ Note, that this helper does not support full API of Rails' `stylesheet_link_tag`
 ```
 
 
-Copyright © 2011 Exvo.com Development BV
+Copyright © 2011-2012 Exvo.com Development BV

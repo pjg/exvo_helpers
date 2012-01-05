@@ -21,6 +21,7 @@ describe Exvo::Helpers do
       Exvo::Helpers.stub(:env).and_return('production')
     end
 
+    specify { Exvo::Helpers.auth_uri.should match('auth.exvo.com') }
     specify { Exvo::Helpers.cdn_uri.should match('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_uri.should match('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_uri.should match('www.exvo.com') }
@@ -38,6 +39,7 @@ describe Exvo::Helpers do
       Exvo::Helpers.stub(:env).and_return('production')
     end
 
+    specify { Exvo::Helpers.auth_host.should match('auth.exvo.com') }
     specify { Exvo::Helpers.cdn_host.should eql('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_host.should eql('www.exvo.com') }
@@ -84,24 +86,16 @@ describe Exvo::Helpers do
     end
   end
 
-  describe "auth_host/auth_uri methods which pass to the ExvoAuth gem" do
-    let(:host) { 'new.auth.exvo.com' }
-    let(:uri) { "http://#{host}"}
-
-    it "raises an error when ExvoAuth is not available" do
-      expect { Exvo::Helpers.auth_uri }.to raise_error
-      expect { Exvo::Helpers.auth_host }.to raise_error
+  describe "setting the auth_require_ssl directly overrides the default" do
+    before do
+      Exvo::Helpers.stub(:env).and_return('production')
+      Exvo::Helpers.auth_require_ssl = false
     end
 
-    it "passes to the ExvoAuth when it is available" do
-      Kernel.const_set(:ExvoAuth, Module)
-      ExvoAuth.const_set(:Config, Module)
+    specify { Exvo::Helpers.auth_uri.should match(/http:\/\//) }
 
-      ExvoAuth::Config.should_receive(:host).and_return(host)
-      Exvo::Helpers.auth_host.should eql(host)
-
-      ExvoAuth::Config.should_receive(:uri).and_return(uri)
-      Exvo::Helpers.auth_uri.should eql(uri)
+    after do
+      Exvo::Helpers.auth_require_ssl = nil
     end
   end
 
