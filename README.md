@@ -132,4 +132,4 @@ Note, that this helper does not support full API of Rails' `stylesheet_link_tag`
 ```
 
 
-Copyright © 2011-2012 Exvo.com Development BV
+Copyright © 2011-2012 Exvo.com Development BV, released under the MIT license
