@@ -68,7 +68,7 @@ module Exvo
     def self.env
       @@env ||= Rails.env if defined?(Rails)
       @@env ||= Merb.env if defined?(Merb)
-      @@env
+      @@env ||= 'production'
     end
 
     def self.env=(env)

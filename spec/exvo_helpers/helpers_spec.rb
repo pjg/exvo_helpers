@@ -3,6 +3,10 @@ require 'spec_helper'
 describe Exvo::Helpers do
 
   describe ".env class method" do
+    it "should fall back to 'production' if Rails & Merb are undefined" do
+      Exvo::Helpers.env.should eql('production')
+    end
+
     it "returns 'production' when Rails.env is set to 'production'" do
       Kernel.const_set(:Rails, Module)
       Rails.should_receive(:env).and_return('production')
@@ -13,15 +17,14 @@ describe Exvo::Helpers do
     it "allows setting env" do
       Exvo::Helpers.env = 'test'
       Exvo::Helpers.env.should eql('test')
+    end
+
+    after do
       Exvo::Helpers.env = nil
     end
   end
 
   describe "uri methods in production environment" do
-    before do
-      Exvo::Helpers.stub(:env).and_return('production')
-    end
-
     specify { Exvo::Helpers.auth_uri.should match('auth.exvo.com') }
     specify { Exvo::Helpers.cdn_uri.should match('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_uri.should match('cfs.exvo.com') }
@@ -36,10 +39,6 @@ describe Exvo::Helpers do
   end
 
   describe "host methods in production environment" do
-    before do
-      Exvo::Helpers.stub(:env).and_return('production')
-    end
-
     specify { Exvo::Helpers.auth_host.should match('auth.exvo.com') }
     specify { Exvo::Helpers.cdn_host.should eql('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
@@ -89,7 +88,6 @@ describe Exvo::Helpers do
 
   describe "setting the auth_require_ssl directly overrides the default" do
     before do
-      Exvo::Helpers.stub(:env).and_return('production')
       Exvo::Helpers.auth_require_ssl = false
     end
 

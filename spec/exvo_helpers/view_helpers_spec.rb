@@ -10,10 +10,6 @@ describe Exvo::ViewHelpers do
 
     let(:view_helper) { SpecViewHelper.new }
 
-    before do
-      Exvo::Helpers.stub(:env).and_return('production')
-    end
-
     it "returns a javascript_include_tag based on env" do
       view_helper.should_receive(:javascript_include_tag).with("//d33gjlr95u9pgf.cloudfront.net/javascripts/plugins.js")
       view_helper.javascript_bundle_include_tag("plugins")
