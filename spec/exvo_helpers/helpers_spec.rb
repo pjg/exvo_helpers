@@ -7,6 +7,7 @@ describe Exvo::Helpers do
       Kernel.const_set(:Rails, Module)
       Rails.should_receive(:env).and_return('production')
       Exvo::Helpers.env.should eql('production')
+      Kernel.send(:remove_const, :Rails)
     end
 
     it "allows setting env" do
