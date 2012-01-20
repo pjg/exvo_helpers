@@ -2,6 +2,8 @@
 
 Ruby gem providing helper methods for various Exvo apps/services. It takes into account the Rails.env (or Merb.env). Also allows overwriting the defaults by ENV variables (and directly too, see below).
 
+This gem is used by both [omniauth-exvo](https://github.com/Exvo/omniauth-exvo/) and [exvo-auth](https://github.com/Exvo/Auth) gems as the authoritative source of **all auth related configuration**.
+
 
 ## Helpers
 
@@ -10,6 +12,9 @@ Results are from the 'development' Rails environment:
 ```ruby
 Exvo::Helpers.auth_debug       => false
 Exvo::Helpers.auth_require_ssl => false
+
+Exvo::Helpers.auth_client_id     => nil
+Exvo::Helpers.auth_client_secret => nil
 
 Exvo::Helpers.auth_host     => 'auth.exvo.local'
 Exvo::Helpers.cdn_host      => 'www.exvo.local'
@@ -45,6 +50,9 @@ There are two ways to do it. One is by the means of ENV variables (the preferred
 ENV['AUTH_DEBUG']       = 'true'
 ENV['AUTH_REQUIRE_SSL'] = 'true'
 
+ENV['AUTH_CLIENT_ID']     = '123'
+ENV['AUTH_CLIENT_SECRET'] = 'abc'
+
 ENV['AUTH_HOST']     = 'test.auth.exvo.com'
 ENV['CDN_HOST']      = 'test.cdn.exvo.com'
 ENV['CFS_HOST']      = 'test.cfs.exvo.com'
@@ -63,6 +71,9 @@ The other one is to set it in the application's config file:
 ```ruby
 Exvo::Helpers.auth_debug       = true
 Exvo::Helpers.auth_require_ssl = true
+
+Exvo::Helpers.auth_client_id     = '123'
+Exvo::Helpers.auth_client_secret = 'abc'
 
 Exvo::Helpers.auth_host     = 'test.auth.exvo.com'
 Exvo::Helpers.cdn_host      = 'test.cdn.exvo.com'

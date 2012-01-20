@@ -80,6 +80,28 @@ module Exvo
 
       end
 
+      %w(client_id client_secret).each do |option|
+
+        # def self.auth_client_id
+        #   @@auth_client_id ||= ENV['AUTH_CLIENT_ID']
+        # end
+        define_method "auth_#{option}" do
+          if class_variable_defined?("@@auth_#{option}") and !class_variable_get("@@auth_#{option}").nil?
+            class_variable_get("@@auth_#{option}")
+          else
+            value = ENV["AUTH_#{option.upcase}"]
+            class_variable_set("@@auth_#{option}", value)
+          end
+        end
+
+        # def self.auth_client_id=(auth_client_id)
+        #   @@auth_client_id = auth_client_id
+        # end
+        define_method "auth_#{option}=" do |value|
+          class_variable_set("@@auth_#{option}", value)
+        end
+      end
+
     end
 
 

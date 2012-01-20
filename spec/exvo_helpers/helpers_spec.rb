@@ -52,9 +52,24 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.preview_host.should eql('preview.exvo.com') }
   end
 
-  describe "auth methods" do
+  describe "#auth_debug and #auth_require_ssl" do
     specify { Exvo::Helpers.auth_debug.should be_false }
     specify { Exvo::Helpers.auth_require_ssl.should be_true }
+  end
+
+  describe "setting #auth_client_id and #auth_client_secret via ENV variables" do
+    before do
+      ENV["AUTH_CLIENT_ID"] = '123'
+      ENV["AUTH_CLIENT_SECRET"] = 'abc'
+    end
+
+    specify { Exvo::Helpers.auth_client_id.should eq('123') }
+    specify { Exvo::Helpers.auth_client_secret.should eq('abc') }
+
+    after do
+      ENV["AUTH_CLIENT_ID"] = nil
+      ENV["AUTH_CLIENT_SECRET"] = nil
+    end
   end
 
   describe "ENV setting overrides the defaults" do
