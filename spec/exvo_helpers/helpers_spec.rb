@@ -52,6 +52,11 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.preview_host.should eql('preview.exvo.com') }
   end
 
+  describe "auth methods" do
+    specify { Exvo::Helpers.auth_debug.should be_false }
+    specify { Exvo::Helpers.auth_require_ssl.should be_true }
+  end
+
   describe "ENV setting overrides the defaults" do
     # as all methods are defined the same using metaprogramming, only testing for 1 is enough
     let(:cdn_host) { "test.cdn.exvo.com" }

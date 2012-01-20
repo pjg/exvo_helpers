@@ -53,18 +53,40 @@ module Exvo
 
     # AUTH
 
-    def self.auth_require_ssl
-      return @@auth_require_ssl if defined?(@@auth_require_ssl) && !@@auth_require_ssl.nil?
-      @@auth_require_ssl = (ENV['AUTH_REQUIRE_SSL'] == 'true') || default_opts[env.to_sym][:auth_require_ssl]
-    end
+    # Dynamically define class methods
+    class << self
 
-    def self.auth_require_ssl=(require_ssl)
-      @@auth_require_ssl = require_ssl
+      %w(debug require_ssl).each do |option|
+
+        # def self.auth_debug
+        #   return @@auth_debug if defined?(@@auth_debug) && !@@auth_debug.nil?
+        #   @@auth_debug = (ENV['AUTH_DEBUG'] == 'true') || default_opts[env.to_sym][:auth_debug]
+        # end
+        define_method "auth_#{option}" do
+          if class_variable_defined?("@@auth_#{option}") and !class_variable_get("@@auth_#{option}").nil?
+            class_variable_get("@@auth_#{option}")
+          else
+            value = (ENV["AUTH_#{option.upcase}"] == 'true') || default_opts[env.to_sym]["auth_#{option}".to_sym]
+            class_variable_set("@@auth_#{option}", value)
+          end
+        end
+
+        # def self.auth_debug=(debug)
+        #   @@auth_debug = debug
+        # end
+        define_method "auth_#{option}=" do |value|
+          class_variable_set("@@auth_#{option}", value)
+        end
+
+      end
+
     end
 
 
     # ENV
 
+    # by default fall back to production; this way the omniauth-exvo's gem specs can pass
+    # (they depend on this gem and on env, but nor Rails nor Merb is undefined there)
     def self.env
       @@env ||= Rails.env if defined?(Rails)
       @@env ||= Merb.env if defined?(Merb)
@@ -81,6 +103,7 @@ module Exvo
     def self.default_opts
       {
         :production => {
+          :auth_debug => false,
           :auth_host => 'auth.exvo.com',
           :auth_require_ssl => true,
           :cdn_host => 'd33gjlr95u9pgf.cloudfront.net', # cloudfront.net so we can use https (cdn.exvo.com via https does not work properly)
@@ -95,6 +118,7 @@ module Exvo
           :preview_host => 'preview.exvo.com'
         },
         :staging => {
+          :auth_debug => false,
           :auth_host => 'staging.auth.exvo.com',
           :auth_require_ssl => false,
           :cdn_host => 'd1by559a994699.cloudfront.net',
@@ -109,6 +133,7 @@ module Exvo
           :preview_host => 'staging.preview.exvo.com'
         },
         :development => {
+          :auth_debug => false,
           :auth_host => 'auth.exvo.local',
           :auth_require_ssl => false,
           :cdn_host => 'www.exvo.local',
@@ -123,6 +148,7 @@ module Exvo
           :preview_host => 'preview.exvo.local'
         },
         :test => {
+          :auth_debug => false,
           :auth_host => 'auth.exvo.local',
           :auth_require_ssl => false,
           :cdn_host => 'www.exvo.local',

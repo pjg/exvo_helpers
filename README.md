@@ -1,12 +1,16 @@
 # Exvo Helpers
 
-Ruby gem providing helper methods for various Exvo apps/services. It takes into account the Rails.env (or Merb.env). Also allows overwriting of the defaults by ENV variables (and directly too, see below).
+Ruby gem providing helper methods for various Exvo apps/services. It takes into account the Rails.env (or Merb.env). Also allows overwriting the defaults by ENV variables (and directly too, see below).
+
 
 ## Helpers
 
 Results are from the 'development' Rails environment:
 
 ```ruby
+Exvo::Helpers.auth_debug       => false
+Exvo::Helpers.auth_require_ssl => false
+
 Exvo::Helpers.auth_host     => 'auth.exvo.local'
 Exvo::Helpers.cdn_host      => 'www.exvo.local'
 Exvo::Helpers.cfs_host      => 'cfs.exvo.local'
@@ -32,47 +36,45 @@ Exvo::Helpers.pics_uri     => 'http://pics.exvo.local'
 Exvo::Helpers.preview_uri  => 'http://preview.exvo.local'
 ```
 
-There is also an `auth_require_ssl` method, which takes true/false values and is used to construct `auth_uri`. It returns `true` in production and `false` in all other environments.
-
-```ruby
-Exvo::Helpers.auth_require_ssl => false
-```
-
 
 ### Overwriting the defaults
 
 There are two ways to do it. One is by the means of ENV variables (the preferred method):
 
 ```ruby
+ENV['AUTH_DEBUG']       = 'true'
 ENV['AUTH_REQUIRE_SSL'] = 'true'
-ENV['AUTH_HOST']        = 'test.auth.exvo.com'
-ENV['CDN_HOST']         = 'test.cdn.exvo.com'
-ENV['CFS_HOST']         = 'test.cfs.exvo.com'
-ENV['DESKTOP_HOST']     = 'test.exvo.com'
-ENV['THEMES_HOST']      = 'test.themes.exvo.com'
-ENV['BLOG_HOST']        = 'test.blog.exvo.local'
-ENV['CONTACTS_HOST']    = 'test.contacts.exvo.local'
-ENV['INBOX_HOST']       = 'test.inbox.exvo.local'
-ENV['MUSIC_HOST']       = 'test.music.exvo.local'
-ENV['PICS_HOST']        = 'test.pics.exvo.local'
-ENV['PREVIEW_HOST']     = 'test.preview.exvo.local'
+
+ENV['AUTH_HOST']     = 'test.auth.exvo.com'
+ENV['CDN_HOST']      = 'test.cdn.exvo.com'
+ENV['CFS_HOST']      = 'test.cfs.exvo.com'
+ENV['DESKTOP_HOST']  = 'test.exvo.com'
+ENV['THEMES_HOST']   = 'test.themes.exvo.com'
+ENV['BLOG_HOST']     = 'test.blog.exvo.local'
+ENV['CONTACTS_HOST'] = 'test.contacts.exvo.local'
+ENV['INBOX_HOST']    = 'test.inbox.exvo.local'
+ENV['MUSIC_HOST']    = 'test.music.exvo.local'
+ENV['PICS_HOST']     = 'test.pics.exvo.local'
+ENV['PREVIEW_HOST']  = 'test.preview.exvo.local'
 ```
 
 The other one is to set it in the application's config file:
 
 ```ruby
+Exvo::Helpers.auth_debug       = true
 Exvo::Helpers.auth_require_ssl = true
-Exvo::Helpers.auth_host        = 'test.auth.exvo.com'
-Exvo::Helpers.cdn_host         = 'test.cdn.exvo.com'
-Exvo::Helpers.cfs_host         = 'test.cfs.exvo.com'
-Exvo::Helpers.desktop_host     = 'test.exvo.com'
-Exvo::Helpers.themes_host      = 'test.themes.exvo.com'
-Exvo::Helpers.blog_host        = 'test.blog.exvo.local'
-Exvo::Helpers.contacts_host    = 'test.contacts.exvo.local'
-Exvo::Helpers.inbox_host       = 'test.inbox.exvo.local'
-Exvo::Helpers.music_host       = 'test.music.exvo.local'
-Exvo::Helpers.pics_host        = 'test.pics.exvo.local'
-Exvo::Helpers.preview_host     = 'test.preview.exvo.local'
+
+Exvo::Helpers.auth_host     = 'test.auth.exvo.com'
+Exvo::Helpers.cdn_host      = 'test.cdn.exvo.com'
+Exvo::Helpers.cfs_host      = 'test.cfs.exvo.com'
+Exvo::Helpers.desktop_host  = 'test.exvo.com'
+Exvo::Helpers.themes_host   = 'test.themes.exvo.com'
+Exvo::Helpers.blog_host     = 'test.blog.exvo.local'
+Exvo::Helpers.contacts_host = 'test.contacts.exvo.local'
+Exvo::Helpers.inbox_host    = 'test.inbox.exvo.local'
+Exvo::Helpers.music_host    = 'test.music.exvo.local'
+Exvo::Helpers.pics_host     = 'test.pics.exvo.local'
+Exvo::Helpers.preview_host  = 'test.preview.exvo.local'
 ```
 
 
