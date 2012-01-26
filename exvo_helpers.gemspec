@@ -2,25 +2,25 @@
 $:.push File.expand_path("../lib", __FILE__)
 require "exvo_helpers/version"
 
-Gem::Specification.new do |s|
-  s.name        = "exvo_helpers"
-  s.version     = ExvoHelpers::VERSION
-  s.authors     = ["Paweł Gościcki"]
-  s.email       = ["pawel.goscicki@gmail.com"]
-  s.homepage    = "https://github.com/Exvo/exvo_helpers/"
-  s.summary     = %q{host/uri helper methods for various Exvo services}
-  s.description = %q{Ruby gem providing helper *_uri/*_host methods for Exvo services/apps like DESKTOP/CFS/AUTH/THEMES.}
+Gem::Specification.new do |gem|
+  gem.name        = "exvo_helpers"
+  gem.version     = ExvoHelpers::VERSION
+  gem.authors     = ["Paweł Gościcki"]
+  gem.email       = ["pawel.goscicki@gmail.com"]
+  gem.homepage    = "https://github.com/Exvo/exvo_helpers/"
+  gem.summary     = %q{Collection of helper methods for various Exvo related apps/services}
+  gem.description = %q{Ruby gem providing various helper methods, like auth_host, auth_uri, auth_require_ssl, cdn_host, etc.}
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  gem.files         = `git ls-files`.split("\n")
+  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  gem.require_paths = ["lib"]
 
-  s.add_development_dependency 'rspec', ['>= 2.8']
-  s.add_development_dependency 'guard', ['>= 0.10.0']
-  s.add_development_dependency 'guard-rspec', ['>= 0.6.0']
-  s.add_development_dependency "rb-fsevent"
-  s.add_development_dependency "rb-inotify"
-  s.add_development_dependency "simplecov"
-  s.add_development_dependency "simplecov-rcov"
+  gem.add_development_dependency 'rspec', ['>= 2.8']
+  gem.add_development_dependency 'guard', ['>= 0.10.0']
+  gem.add_development_dependency 'guard-rspec', ['>= 0.6.0']
+  gem.add_development_dependency "rb-fsevent"
+  gem.add_development_dependency "rb-inotify"
+  gem.add_development_dependency "simplecov"
+  gem.add_development_dependency "simplecov-rcov"
 end
