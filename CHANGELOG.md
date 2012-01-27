@@ -2,6 +2,10 @@
 
 Note, that only significant changes are listed.
 
+## 0.2.1 (2012-01-27)
+
+* Bugfix (`ENV["AUTH_REQUIRE_SSL"]` and `ENV["AUTH_DEBUG"]` were not being respected when set to `false`)
+
 
 ## 0.2.0 (2012-01-20)
 

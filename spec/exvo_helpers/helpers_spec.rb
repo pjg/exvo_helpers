@@ -119,6 +119,18 @@ describe Exvo::Helpers do
     end
   end
 
+  describe "setting the auth_require_ssl to false via ENV variable overrides the default" do
+    before do
+      ENV["AUTH_REQUIRE_SSL"] = 'false'
+    end
+
+    specify { Exvo::Helpers.auth_uri.should match(/http:\/\//) }
+
+    after do
+      ENV["AUTH_REQUIRE_SSL"] = nil
+    end
+  end
+
   describe "setting the auth_require_ssl directly overrides the default" do
     before do
       Exvo::Helpers.auth_require_ssl = false

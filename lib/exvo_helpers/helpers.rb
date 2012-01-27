@@ -60,13 +60,18 @@ module Exvo
 
         # def self.auth_debug
         #   return @@auth_debug if defined?(@@auth_debug) && !@@auth_debug.nil?
-        #   @@auth_debug = (ENV['AUTH_DEBUG'] == 'true') || default_opts[env.to_sym][:auth_debug]
+        #   value = true if ENV["AUTH_DEBUG"] =~ /true/i
+        #   value = false if ENV["AUTH_DEBUG"] =~ /false/i
+        #   value = default_opts[env.to_sym]["auth_debug".to_sym] if value.nil?
+        #   @@auth_debug = value
         # end
         define_method "auth_#{option}" do
           if class_variable_defined?("@@auth_#{option}") and !class_variable_get("@@auth_#{option}").nil?
             class_variable_get("@@auth_#{option}")
           else
-            value = (ENV["AUTH_#{option.upcase}"] == 'true') || default_opts[env.to_sym]["auth_#{option}".to_sym]
+            value = true if ENV["AUTH_#{option.upcase}"] =~ /true/i
+            value = false if ENV["AUTH_#{option.upcase}"] =~ /false/i
+            value = default_opts[env.to_sym]["auth_#{option}".to_sym] if value.nil?
             class_variable_set("@@auth_#{option}", value)
           end
         end
