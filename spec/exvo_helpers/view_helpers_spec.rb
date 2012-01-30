@@ -35,6 +35,7 @@ describe Exvo::ViewHelpers do
     specify { snippet.should match('<script type="text/javascript">') }
     specify { snippet.should match("['_setAccount', 'exvo.com']") }
     specify { snippet.should match("['_setDomainName', '123']") }
+    specify { snippet.should match("window.location.hash") }
   end
 
 end

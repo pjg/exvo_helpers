@@ -41,6 +41,15 @@ module Exvo
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+
+  var current_location_hash = window.location.hash;
+  var update_hash = function() {
+    if (current_location_hash != window.location.hash) {
+      current_location_hash = window.location.hash;
+      _gaq.push(['_trackPageview', current_location_hash]);
+    }
+  }
+  setInterval(update_hash, 500);
 </script>
 END
 
