@@ -145,4 +145,20 @@ Note, that this helper does not support full API of Rails' `stylesheet_link_tag`
 ```
 
 
+### google_analytics(domain, account)
+
+New, asynchronous Google Analytics javascript snippet to track page views. Note, that it will output the javascript analytics snippet only in production environment.
+
+```ruby
+= google_analytics('exvo.com', 'UA-2491324-1')
+```
+
+```html
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  ...
+```
+
+
+
 Copyright © 2011-2012 Exvo.com Development BV, released under the MIT license
