@@ -4,7 +4,7 @@ require "exvo_helpers/version"
 
 Gem::Specification.new do |gem|
   gem.name        = "exvo_helpers"
-  gem.version     = ExvoHelpers::VERSION
+  gem.version     = Exvo::Helpers::VERSION
   gem.authors     = ["Paweł Gościcki"]
   gem.email       = ["pawel.goscicki@gmail.com"]
   gem.homepage    = "https://github.com/Exvo/exvo_helpers/"
