@@ -30,12 +30,12 @@ describe Exvo::ViewHelpers do
   end
 
   describe "#google_analytics" do
-    let(:snippet) { view_helper.google_analytics("exvo.com", "123") }
+    let(:snippet) { view_helper.google_analytics("123", :domain => 'exvo.com', :track_hash_changes => true) }
 
-    specify { snippet.should match('<script type="text/javascript">') }
-    specify { snippet.should match("['_setAccount', 'exvo.com']") }
-    specify { snippet.should match("['_setDomainName', '123']") }
-    specify { snippet.should match("window.location.hash") }
+    specify { snippet.should match(/<script type="text\/javascript">/) }
+    specify { snippet.should match(/'_setAccount', '123'/) }
+    specify { snippet.should match(/'_setDomainName', 'exvo.com'/) }
+    specify { snippet.should match(/window.location.hash/) }
   end
 
 end

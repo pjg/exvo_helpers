@@ -27,12 +27,23 @@ module Exvo
       image_tag(Exvo::Helpers.themes_uri + '/stylesheets/images' + path, options)
     end
 
-    def google_analytics(domain, account)
-      script = <<END
+    def google_analytics(account, opts = {})
+      domain = opts.delete(:domain)
+      track_hash_changes = opts.delete(:track_hash_changes)
+
+      out = <<END
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '#{account}']);
+END
+
+      if domain
+        out += <<END
   _gaq.push(['_setDomainName', '#{domain}']);
+END
+      end
+
+      out += <<END
   _gaq.push(['_setAllowLinker', true]);
   _gaq.push(['_trackPageview']);
 
@@ -41,6 +52,10 @@ module Exvo
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
+END
+
+      if track_hash_changes
+        out += <<END
 
   var current_location_hash = window.location.hash;
   var update_hash = function() {
@@ -50,11 +65,15 @@ module Exvo
     }
   }
   setInterval(update_hash, 500);
+END
+      end
+
+      out += <<END
 </script>
 END
 
       if Exvo::Helpers.env.to_sym == :production
-        script.respond_to?(:html_safe) ? script.html_safe : script
+        out.respond_to?(:html_safe) ? out.html_safe : out
       end
     end
 

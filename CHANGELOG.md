@@ -2,6 +2,10 @@
 
 Note, that only significant changes are listed.
 
+## 0.3.0 (2012-04-18)
+
+* different syntax for `google_analytics` view helper
+
 ## 0.2.2 (2012-01-30)
 
 * `google_analytics` view helper
