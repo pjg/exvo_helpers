@@ -153,10 +153,10 @@ module Exvo
           :desktop_host => 'www.exvo.co',
           :themes_host => 'staging.themes.exvo.com',
           :blog_host => 'staging.blog.exvo.com',
-          :contacts_host => 'exvo-contacts-staging.heroku.com',
-          :inbox_host => 'exvo-inbox-staging.heroku.com',
-          :music_host => 'exvo-music-staging.heroku.com',
-          :pics_host => 'exvo-pictures-staging.heroku.com',
+          :contacts_host => 'staging.contacts.exvo.com',
+          :inbox_host => 'staging.inbox.exvo.com',
+          :music_host => 'staging.music.exvo.com',
+          :pics_host => 'staging.pics.exvo.com',
           :preview_host => 'staging.preview.exvo.com'
         },
         :development => {
