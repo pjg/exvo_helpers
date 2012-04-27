@@ -7,10 +7,10 @@ describe Exvo::Helpers do
       Exvo::Helpers.env.should eql('production')
     end
 
-    it "returns 'production' when Rails.env is set to 'production'" do
+    it "returns 'staging' when Rails.env is set to 'staging'" do
       Kernel.const_set(:Rails, Module)
-      Rails.should_receive(:env).and_return('production')
-      Exvo::Helpers.env.should eql('production')
+      Rails.should_receive(:env).and_return('staging')
+      Exvo::Helpers.env.should eql('staging')
       Kernel.send(:remove_const, :Rails)
     end
 
