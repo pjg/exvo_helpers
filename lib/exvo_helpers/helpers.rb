@@ -117,6 +117,7 @@ module Exvo
     def self.env
       @@env ||= Rails.env if defined?(Rails)
       @@env ||= Merb.env if defined?(Merb)
+      @@env ||= ENV["RACK_ENV"] if ENV["RACK_ENV"]
       @@env ||= 'production'
     end
 

@@ -14,6 +14,12 @@ describe Exvo::Helpers do
       Kernel.send(:remove_const, :Rails)
     end
 
+    it "returns 'staging' when RACK_ENV is set to 'staging'" do
+      ENV["RACK_ENV"] = 'staging'
+      Exvo::Helpers.env.should eql('staging')
+      ENV.delete("RACK_ENV")
+    end
+
     it "allows setting env" do
       Exvo::Helpers.env = 'test'
       Exvo::Helpers.env.should eql('test')

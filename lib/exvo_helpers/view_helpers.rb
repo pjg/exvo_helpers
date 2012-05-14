@@ -5,9 +5,7 @@ module Exvo
     # Returns `javascript_include_tag` with link to js bundles (based on env)
     def javascript_bundle_include_tag(bundle)
       case Exvo::Helpers.env.to_sym
-      when :production
-        javascript_include_tag "#{Exvo::Helpers.cdn_uri}/javascripts/#{bundle}.js"
-      when :staging
+      when :production, :staging
         javascript_include_tag "#{Exvo::Helpers.cdn_uri}/javascripts/#{bundle}.js"
       else
         javascript_include_tag "#{Exvo::Helpers.cdn_uri}/javascripts/bundles/#{bundle}.js"
