@@ -147,7 +147,7 @@ Note, that this helper does not support full API of Rails' `stylesheet_link_tag`
 
 ### google_analytics(account, opts = {})
 
-New, asynchronous Google Analytics javascript snippet to track page views. Note, that it will output the javascript analytics snippet only in production environment.
+Asynchronous Google Analytics javascript snippet to track page views. Note, that it will output the javascript analytics snippet only in production environment.
 
 ```ruby
 = google_analytics('UA-2491324-1', :domain => 'none', :track_hash_changes => true)
@@ -160,6 +160,26 @@ New, asynchronous Google Analytics javascript snippet to track page views. Note,
   var _gaq = _gaq || [];
   ...
 ```
+
+
+### kissmetrics
+
+KISSmetrics javascript snippet to track users. Note, that you need to have `ENV["KISSMETRICS_KEY"]` key set.
+
+```ruby
+= kissmetrics
+```
+
+=>
+
+```html
+<script type="text/javascript">
+  var _kmq = _kmq || [];
+  function _kms(u) {
+    setTimeout(function() {
+    ...
+```
+
 
 
 

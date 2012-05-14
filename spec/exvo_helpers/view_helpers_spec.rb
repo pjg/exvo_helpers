@@ -38,4 +38,18 @@ describe Exvo::ViewHelpers do
     specify { snippet.should match(/window.location.hash/) }
   end
 
+  describe "#kissmetrics" do
+    let(:snippet) { view_helper.kissmetrics }
+    let(:email) { "me@me.com" }
+    let(:current_user) { Struct.new(:email).new(email) }
+
+    before do
+      view_helper.should_receive(:current_user).at_least(1).times.and_return(current_user)
+    end
+
+    specify { snippet.should match(/<script type="text\/javascript">/) }
+    specify { snippet.should match(/kissmetrics\.com/) }
+    specify { snippet.should match(%r(identify.+#{email})) }
+  end
+
 end
