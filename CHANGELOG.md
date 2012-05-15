@@ -2,7 +2,7 @@
 
 Note, that only significant changes are listed.
 
-## 0.4.0 (2012-05-..)
+## 0.4.0 (2012-05-15)
 
 * support for Sinatra apps (use `ENV["RACK_ENV"]` to set environment)
 * `kissmetrics` view helper
