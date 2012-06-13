@@ -58,6 +58,24 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.preview_host.should eql('preview.exvo.com') }
   end
 
+  describe "host methods in staging environment" do
+    before do
+      Exvo::Helpers.env = 'staging'
+    end
+
+    specify { Exvo::Helpers.auth_host.should match('auth.exvo.co') }
+    specify { Exvo::Helpers.cdn_host.should eql('d1by559a994699.cloudfront.net') }
+    specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.co') }
+    specify { Exvo::Helpers.desktop_host.should eql('www.exvo.co') }
+    specify { Exvo::Helpers.themes_host.should eql('themes.exvo.co') }
+    specify { Exvo::Helpers.blog_host.should eql('blog.exvo.co') }
+    specify { Exvo::Helpers.contacts_host.should eql('contacts.exvo.co') }
+    specify { Exvo::Helpers.inbox_host.should eql('inbox.exvo.co') }
+    specify { Exvo::Helpers.music_host.should eql('music.exvo.co') }
+    specify { Exvo::Helpers.pics_host.should eql('pics.exvo.co') }
+    specify { Exvo::Helpers.preview_host.should eql('preview.exvo.co') }
+  end
+
   describe "#auth_debug by default for production env" do
     specify { Exvo::Helpers.auth_debug.should be_false }
   end
@@ -120,12 +138,24 @@ describe Exvo::Helpers do
   # Clear all memoizations and ENV variables
   def clear_memoizations
     Exvo::Helpers.env = nil
-    Exvo::Helpers.cdn_host = nil
+
     Exvo::Helpers.auth_debug = nil
     Exvo::Helpers.auth_require_ssl = nil
     Exvo::Helpers.auth_client_id = nil
     Exvo::Helpers.auth_client_secret = nil
     Exvo::Helpers.sso_cookie_domain = nil
+
+    Exvo::Helpers.auth_host = nil
+    Exvo::Helpers.cdn_host = nil
+    Exvo::Helpers.cfs_host = nil
+    Exvo::Helpers.desktop_host = nil
+    Exvo::Helpers.themes_host = nil
+    Exvo::Helpers.blog_host = nil
+    Exvo::Helpers.contacts_host = nil
+    Exvo::Helpers.inbox_host = nil
+    Exvo::Helpers.music_host = nil
+    Exvo::Helpers.pics_host = nil
+    Exvo::Helpers.preview_host = nil
 
     ENV.delete("RACK_ENV")
     ENV.delete("CDN_HOST")
