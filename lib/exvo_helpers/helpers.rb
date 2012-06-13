@@ -147,18 +147,18 @@ module Exvo
         },
         :staging => {
           :auth_debug => false,
-          :auth_host => 'staging.auth.exvo.com',
+          :auth_host => 'auth.exvo.co',
           :auth_require_ssl => false,
           :cdn_host => 'd1by559a994699.cloudfront.net',
-          :cfs_host => 'staging.cfs.exvo.com',
+          :cfs_host => 'cfs.exvo.co',
           :desktop_host => 'www.exvo.co',
-          :themes_host => 'staging.themes.exvo.com',
-          :blog_host => 'staging.blog.exvo.com',
-          :contacts_host => 'staging.contacts.exvo.com',
-          :inbox_host => 'staging.inbox.exvo.com',
-          :music_host => 'staging.music.exvo.com',
-          :pics_host => 'staging.pics.exvo.com',
-          :preview_host => 'staging.preview.exvo.com'
+          :themes_host => 'themes.exvo.co',
+          :blog_host => 'blog.exvo.co',
+          :contacts_host => 'contacts.exvo.co',
+          :inbox_host => 'inbox.exvo.co',
+          :music_host => 'music.exvo.co',
+          :pics_host => 'pics.exvo.co',
+          :preview_host => 'preview.exvo.co'
         },
         :development => {
           :auth_debug => false,
