@@ -2,6 +2,12 @@
 
 Note, that only significant changes are listed.
 
+## 0.5.0 (2012-06-..)
+
+* all staging apps now use 'exvo.co' domain
+* new `sso_cookie_domain` setting
+
+
 ## 0.4.0 (2012-05-15)
 
 * support for Sinatra apps (use `ENV["RACK_ENV"]` to set environment)

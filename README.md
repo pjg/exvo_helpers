@@ -16,6 +16,8 @@ Exvo::Helpers.auth_require_ssl => false
 Exvo::Helpers.auth_client_id     => nil
 Exvo::Helpers.auth_client_secret => nil
 
+Exvo::Helpers.sso_cookie_domain => 'exvo.local'
+
 Exvo::Helpers.auth_host     => 'auth.exvo.local'
 Exvo::Helpers.cdn_host      => 'www.exvo.local'
 Exvo::Helpers.cfs_host      => 'cfs.exvo.local'
@@ -53,6 +55,8 @@ ENV['AUTH_REQUIRE_SSL'] = 'true'
 ENV['AUTH_CLIENT_ID']     = '123'
 ENV['AUTH_CLIENT_SECRET'] = 'abc'
 
+ENV['SSO_COOKIE_DOMAIN'] = 'exvo.dev'
+
 ENV['AUTH_HOST']     = 'test.auth.exvo.com'
 ENV['CDN_HOST']      = 'test.cdn.exvo.com'
 ENV['CFS_HOST']      = 'test.cfs.exvo.com'
@@ -74,6 +78,8 @@ Exvo::Helpers.auth_require_ssl = true
 
 Exvo::Helpers.auth_client_id     = '123'
 Exvo::Helpers.auth_client_secret = 'abc'
+
+Exvo::Helpers.sso_cookie_domain = 'exvo.dev'
 
 Exvo::Helpers.auth_host     = 'test.auth.exvo.com'
 Exvo::Helpers.cdn_host      = 'test.cdn.exvo.com'
