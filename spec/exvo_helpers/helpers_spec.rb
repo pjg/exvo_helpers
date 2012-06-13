@@ -76,6 +76,10 @@ describe Exvo::Helpers do
     end
   end
 
+  describe "#sso_cookie_domain by default for production env" do
+    specify { Exvo::Helpers.sso_cookie_domain.should eq("exvo.com") }
+  end
+
   describe "setting #auth_client_id and #auth_client_secret via ENV variables" do
     before do
       ENV["AUTH_CLIENT_ID"] = '123'
@@ -92,36 +96,45 @@ describe Exvo::Helpers do
   end
 
   describe "ENV setting overrides the defaults" do
-    # as all methods are defined the same using metaprogramming, only testing for 1 is enough
+    # all *host* methods are defined the same using metaprogramming, only testing for 1 is enough
     let(:cdn_host) { "test.cdn.exvo.com" }
+    let(:sso_cookie_domain) { "exvo.dev" }
 
     before do
       # clear any previous memoization
       Exvo::Helpers.cdn_host = nil
+      Exvo::Helpers.sso_cookie_domain = nil
 
       # set ENV
       ENV["CDN_HOST"] = cdn_host
+      ENV["SSO_COOKIE_DOMAIN"] = sso_cookie_domain
     end
 
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
+    specify { Exvo::Helpers.sso_cookie_domain.should eql(sso_cookie_domain) }
 
     after do
       ENV["CDN_HOST"] = nil
+      ENV["SSO_COOKIE_DOMAIN"] = nil
     end
   end
 
   describe "setting host directly overrides the defaults" do
-    # as all methods are defined the same using metaprogramming, only testing for 1 is enough
+    # all *host* methods are defined the same using metaprogramming, only testing for 1 is enough
     let(:cdn_host) { "new.cdn.exvo.com" }
+    let(:sso_cookie_domain) { "exvo.new" }
 
     before do
       Exvo::Helpers.cdn_host = cdn_host
+      Exvo::Helpers.sso_cookie_domain = sso_cookie_domain
     end
 
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
+    specify { Exvo::Helpers.sso_cookie_domain.should eql(sso_cookie_domain) }
 
     after do
       Exvo::Helpers.cdn_host = nil
+      Exvo::Helpers.sso_cookie_domain = nil
     end
   end
 

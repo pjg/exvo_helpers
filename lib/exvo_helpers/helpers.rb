@@ -105,6 +105,38 @@ module Exvo
         define_method "auth_#{option}=" do |value|
           class_variable_set("@@auth_#{option}", value)
         end
+
+      end
+
+    end
+
+
+    # SSO Cookie Domain
+
+    # Dynamically define class methods
+    class << self
+
+      %w(sso_cookie_domain).each do |option|
+
+        # def self.sso_cookie_domain
+        #   @@sso_cookie_domain ||= ENV['SSO_COOKIE_DOMAIN'] || default_opts[env.to_sym][:sso_cookie_domain]
+        # end
+        define_method "#{option}" do
+          if class_variable_defined?("@@#{option}") and class_variable_get("@@#{option}")
+            class_variable_get("@@#{option}")
+          else
+            domain = ENV["#{option.upcase}"] || default_opts[env.to_sym]["#{option}".to_sym]
+            class_variable_set("@@#{option}", domain)
+          end
+        end
+
+        # def self.sso_cookie_domain=(domain)
+        #   @@sso_cookie_domain = domain
+        # end
+        define_method "#{option}=" do |value|
+          class_variable_set("@@#{option}", value)
+        end
+
       end
 
     end
@@ -134,6 +166,7 @@ module Exvo
           :auth_debug => false,
           :auth_host => 'auth.exvo.com',
           :auth_require_ssl => true,
+          :sso_cookie_domain => 'exvo.com',
           :cdn_host => 'd33gjlr95u9pgf.cloudfront.net', # cloudfront.net so we can use https (cdn.exvo.com via https does not work properly)
           :cfs_host => 'cfs.exvo.com',
           :desktop_host => 'www.exvo.com',
@@ -149,6 +182,7 @@ module Exvo
           :auth_debug => false,
           :auth_host => 'auth.exvo.co',
           :auth_require_ssl => false,
+          :sso_cookie_domain => 'exvo.co',
           :cdn_host => 'd1by559a994699.cloudfront.net',
           :cfs_host => 'cfs.exvo.co',
           :desktop_host => 'www.exvo.co',
@@ -164,6 +198,7 @@ module Exvo
           :auth_debug => false,
           :auth_host => 'auth.exvo.local',
           :auth_require_ssl => false,
+          :sso_cookie_domain => 'exvo.local',
           :cdn_host => 'www.exvo.local',
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'www.exvo.local',
@@ -179,6 +214,7 @@ module Exvo
           :auth_debug => false,
           :auth_host => 'auth.exvo.local',
           :auth_require_ssl => false,
+          :sso_cookie_domain => 'exvo.local',
           :cdn_host => 'www.exvo.local',
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'www.exvo.local',
