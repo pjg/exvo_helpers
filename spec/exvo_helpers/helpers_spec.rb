@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe Exvo::Helpers do
 
+  # clear all memoizations after each spec run
+  after do
+    clear_memoizations
+  end
+
   describe ".env class method" do
     it "should fall back to 'production' if Rails & Merb are undefined" do
       Exvo::Helpers.env.should eql('production')
@@ -17,16 +22,11 @@ describe Exvo::Helpers do
     it "returns 'staging' when RACK_ENV is set to 'staging'" do
       ENV["RACK_ENV"] = 'staging'
       Exvo::Helpers.env.should eql('staging')
-      ENV.delete("RACK_ENV")
     end
 
     it "allows setting env" do
       Exvo::Helpers.env = 'test'
       Exvo::Helpers.env.should eql('test')
-    end
-
-    after do
-      Exvo::Helpers.env = nil
     end
   end
 
@@ -60,29 +60,14 @@ describe Exvo::Helpers do
 
   describe "#auth_debug by default for production env" do
     specify { Exvo::Helpers.auth_debug.should be_false }
-
-    after do
-      # reset cached class instance variable
-      Exvo::Helpers.auth_debug = nil
-    end
   end
 
   describe "#auth_require_ssl by default for production env" do
     specify { Exvo::Helpers.auth_require_ssl.should be_true }
-
-    after do
-      # reset cached class instance variable
-      Exvo::Helpers.auth_require_ssl = nil
-    end
   end
 
   describe "#sso_cookie_domain by default for production env" do
     specify { Exvo::Helpers.sso_cookie_domain.should eq("exvo.com") }
-
-    after do
-      # reset cached class instance variable
-      Exvo::Helpers.sso_cookie_domain = nil
-    end
   end
 
   describe "ENV settings override the defaults" do
@@ -94,13 +79,6 @@ describe Exvo::Helpers do
     let(:sso_cookie_domain) { "exvo.dev" }
 
     before do
-      # clear any previous memoization
-      Exvo::Helpers.cdn_host = nil
-      Exvo::Helpers.auth_client_id = nil
-      Exvo::Helpers.auth_client_secret = nil
-      Exvo::Helpers.auth_require_ssl = nil
-      Exvo::Helpers.sso_cookie_domain = nil
-
       # set ENV
       ENV["CDN_HOST"] = cdn_host
       ENV["AUTH_CLIENT_ID"] = auth_client_id
@@ -114,14 +92,6 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.auth_client_secret.should eq(auth_client_secret) }
     specify { Exvo::Helpers.auth_uri.should match(/http:\/\//) }
     specify { Exvo::Helpers.sso_cookie_domain.should eql(sso_cookie_domain) }
-
-    after do
-      ENV["CDN_HOST"] = nil
-      ENV["AUTH_CLIENT_ID"] = nil
-      ENV["AUTH_CLIENT_SECRET"] = nil
-      ENV["AUTH_REQUIRE_SSL"] = nil
-      ENV["SSO_COOKIE_DOMAIN"] = nil
-    end
   end
 
   describe "direct settings override the defaults" do
@@ -145,14 +115,25 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.auth_client_secret.should eq(auth_client_secret) }
     specify { Exvo::Helpers.auth_uri.should match(/http:\/\//) }
     specify { Exvo::Helpers.sso_cookie_domain.should eql(sso_cookie_domain) }
+  end
 
-    after do
-      Exvo::Helpers.cdn_host = nil
-      Exvo::Helpers.auth_client_id = nil
-      Exvo::Helpers.auth_client_secret = nil
-      Exvo::Helpers.auth_require_ssl = nil
-      Exvo::Helpers.sso_cookie_domain = nil
-    end
+  # Clear all memoizations and ENV variables
+  def clear_memoizations
+    Exvo::Helpers.env = nil
+    Exvo::Helpers.cdn_host = nil
+    Exvo::Helpers.auth_debug = nil
+    Exvo::Helpers.auth_require_ssl = nil
+    Exvo::Helpers.auth_client_id = nil
+    Exvo::Helpers.auth_client_secret = nil
+    Exvo::Helpers.sso_cookie_domain = nil
+
+    ENV.delete("RACK_ENV")
+    ENV.delete("CDN_HOST")
+    ENV.delete("AUTH_DEBUG")
+    ENV.delete("AUTH_CLIENT_ID")
+    ENV.delete("AUTH_CLIENT_SECRET")
+    ENV.delete("AUTH_REQUIRE_SSL")
+    ENV.delete("SSO_COOKIE_DOMAIN")
   end
 
 end
