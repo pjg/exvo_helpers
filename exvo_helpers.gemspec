@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rspec', ['>= 2.8']
   gem.add_development_dependency 'guard', ['>= 0.10.0']
+  gem.add_development_dependency 'guard-bundler'
   gem.add_development_dependency 'guard-rspec', ['>= 0.6.0']
   gem.add_development_dependency "rb-fsevent"
   gem.add_development_dependency "rb-inotify"
