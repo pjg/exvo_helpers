@@ -113,7 +113,7 @@ module Exvo
     # ENV
 
     # by default fall back to production; this way the omniauth-exvo's gem specs can pass
-    # (they depend on this gem and on env, but nor Rails nor Merb is undefined there)
+    # (they depend on this gem and on env, but nor Rails nor Merb is defined there)
     def self.env
       @@env ||= Rails.env if defined?(Rails)
       @@env ||= Merb.env if defined?(Merb)
