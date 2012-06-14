@@ -95,6 +95,7 @@ describe Exvo::Helpers do
     let(:auth_client_secret) { 'abc' }
     let(:auth_require_ssl) { 'false' }
     let(:sso_cookie_domain) { "exvo.dev" }
+    let(:sso_cookie_secret) { "secret" }
 
     before do
       # set ENV
@@ -103,6 +104,7 @@ describe Exvo::Helpers do
       ENV["AUTH_CLIENT_SECRET"] = auth_client_secret
       ENV["AUTH_REQUIRE_SSL"] = auth_require_ssl
       ENV["SSO_COOKIE_DOMAIN"] = sso_cookie_domain
+      ENV["SSO_COOKIE_SECRET"] = sso_cookie_secret
     end
 
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
@@ -110,6 +112,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.auth_client_secret.should eq(auth_client_secret) }
     specify { Exvo::Helpers.auth_uri.should match(/http:\/\//) }
     specify { Exvo::Helpers.sso_cookie_domain.should eql(sso_cookie_domain) }
+    specify { Exvo::Helpers.sso_cookie_secret.should eql(sso_cookie_secret) }
   end
 
   describe "direct settings override the defaults" do
@@ -119,6 +122,7 @@ describe Exvo::Helpers do
     let(:auth_client_secret) { 'abc' }
     let(:auth_require_ssl) { false }
     let(:sso_cookie_domain) { "exvo.new" }
+    let(:sso_cookie_secret) { "abc" }
 
     before do
       Exvo::Helpers.cdn_host = cdn_host
@@ -126,6 +130,7 @@ describe Exvo::Helpers do
       Exvo::Helpers.auth_client_secret = auth_client_secret
       Exvo::Helpers.auth_require_ssl = auth_require_ssl
       Exvo::Helpers.sso_cookie_domain = sso_cookie_domain
+      Exvo::Helpers.sso_cookie_secret = sso_cookie_secret
     end
 
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
@@ -133,6 +138,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.auth_client_secret.should eq(auth_client_secret) }
     specify { Exvo::Helpers.auth_uri.should match(/http:\/\//) }
     specify { Exvo::Helpers.sso_cookie_domain.should eql(sso_cookie_domain) }
+    specify { Exvo::Helpers.sso_cookie_secret.should eql(sso_cookie_secret) }
   end
 
   # Clear all memoizations and ENV variables
@@ -144,6 +150,7 @@ describe Exvo::Helpers do
     Exvo::Helpers.auth_client_id = nil
     Exvo::Helpers.auth_client_secret = nil
     Exvo::Helpers.sso_cookie_domain = nil
+    Exvo::Helpers.sso_cookie_secret = nil
 
     Exvo::Helpers.auth_host = nil
     Exvo::Helpers.cdn_host = nil
@@ -164,6 +171,7 @@ describe Exvo::Helpers do
     ENV.delete("AUTH_CLIENT_SECRET")
     ENV.delete("AUTH_REQUIRE_SSL")
     ENV.delete("SSO_COOKIE_DOMAIN")
+    ENV.delete("SSO_COOKIE_SECRET")
   end
 
 end

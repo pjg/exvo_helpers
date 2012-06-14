@@ -139,6 +139,29 @@ module Exvo
 
       end
 
+      %w(sso_cookie_secret).each do |option|
+
+        # def self.sso_cookie_secret
+        #   @@sso_cookie_secret ||= ENV['SSO_COOKIE_secret']
+        # end
+        define_method "#{option}" do
+          if class_variable_defined?("@@#{option}") and class_variable_get("@@#{option}")
+            class_variable_get("@@#{option}")
+          else
+            secret = ENV["#{option.upcase}"]
+            class_variable_set("@@#{option}", secret)
+          end
+        end
+
+        # def self.sso_cookie_secret=(secret)
+        #   @@sso_cookie_secret = secret
+        # end
+        define_method "#{option}=" do |value|
+          class_variable_set("@@#{option}", value)
+        end
+
+      end
+
     end
 
 

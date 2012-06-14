@@ -17,6 +17,7 @@ Exvo::Helpers.auth_client_id     => nil
 Exvo::Helpers.auth_client_secret => nil
 
 Exvo::Helpers.sso_cookie_domain => 'exvo.local'
+Exvo::Helpers.sso_cookie_secret => 'some secret cookie signing key'
 
 Exvo::Helpers.auth_host     => 'auth.exvo.local'
 Exvo::Helpers.cdn_host      => 'www.exvo.local'
@@ -56,6 +57,7 @@ ENV['AUTH_CLIENT_ID']     = '123'
 ENV['AUTH_CLIENT_SECRET'] = 'abc'
 
 ENV['SSO_COOKIE_DOMAIN'] = 'exvo.dev'
+ENV['SSO_COOKIE_SECRET'] = 'exvo.dev'
 
 ENV['AUTH_HOST']     = 'test.auth.exvo.com'
 ENV['CDN_HOST']      = 'test.cdn.exvo.com'
@@ -80,6 +82,7 @@ Exvo::Helpers.auth_client_id     = '123'
 Exvo::Helpers.auth_client_secret = 'abc'
 
 Exvo::Helpers.sso_cookie_domain = 'exvo.dev'
+Exvo::Helpers.sso_cookie_key = 'some secret key'
 
 Exvo::Helpers.auth_host     = 'test.auth.exvo.com'
 Exvo::Helpers.cdn_host      = 'test.cdn.exvo.com'
