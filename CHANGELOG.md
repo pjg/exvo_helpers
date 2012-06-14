@@ -2,7 +2,7 @@
 
 Note, that only significant changes are listed.
 
-## 0.5.0 (2012-06-..)
+## 0.5.0 (2012-06-15)
 
 * all staging apps now use 'exvo.co' domain
 * new `sso_cookie_domain` and `sso_cookie_secret` settings
