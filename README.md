@@ -159,7 +159,7 @@ Note, that this helper does not support full API of Rails' `stylesheet_link_tag`
 Asynchronous Google Analytics javascript snippet to track page views. Note, that it will output the javascript analytics snippet only in production environment.
 
 ```ruby
-= google_analytics('UA-2491324-1', :domain => 'none', :track_hash_changes => true)
+= google_analytics('UA-XXXXXXX-X', :domain => 'none', :track_hash_changes => true)
 ```
 
 =>
