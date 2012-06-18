@@ -42,6 +42,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.music_uri.should match('music.exvo.com') }
     specify { Exvo::Helpers.pics_uri.should match('pics.exvo.com') }
     specify { Exvo::Helpers.preview_uri.should match('preview.exvo.com') }
+    specify { Exvo::Helpers.store_uri.should match('store.exvo.com') }
   end
 
   describe "host methods in production environment" do
@@ -56,6 +57,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.music_host.should eql('music.exvo.com') }
     specify { Exvo::Helpers.pics_host.should eql('pics.exvo.com') }
     specify { Exvo::Helpers.preview_host.should eql('preview.exvo.com') }
+    specify { Exvo::Helpers.store_host.should eql('store.exvo.com') }
   end
 
   describe "host methods in staging environment" do
@@ -74,6 +76,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.music_host.should eql('music.exvo.co') }
     specify { Exvo::Helpers.pics_host.should eql('pics.exvo.co') }
     specify { Exvo::Helpers.preview_host.should eql('preview.exvo.co') }
+    specify { Exvo::Helpers.store_host.should eql('store.exvo.co') }
   end
 
   describe "#auth_debug by default for production env" do
@@ -163,6 +166,7 @@ describe Exvo::Helpers do
     Exvo::Helpers.music_host = nil
     Exvo::Helpers.pics_host = nil
     Exvo::Helpers.preview_host = nil
+    Exvo::Helpers.store_host = nil
 
     ENV.delete("RACK_ENV")
     ENV.delete("CDN_HOST")

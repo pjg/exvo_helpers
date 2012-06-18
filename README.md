@@ -30,6 +30,7 @@ Exvo::Helpers.inbox_host    => 'inbox.exvo.local'
 Exvo::Helpers.music_host    => 'music.exvo.local'
 Exvo::Helpers.pics_host     => 'pics.exvo.local'
 Exvo::Helpers.preview_host  => 'preview.exvo.local'
+Exvo::Helpers.store_host    => 'store.exvo.local'
 
 Exvo::Helpers.auth_uri     => 'http://auth.exvo.local'
 Exvo::Helpers.cdn_uri      => 'http://www.exvo.local'
@@ -42,6 +43,7 @@ Exvo::Helpers.inbox_uri    => 'http://inbox.exvo.local'
 Exvo::Helpers.music_uri    => 'http://music.exvo.local'
 Exvo::Helpers.pics_uri     => 'http://pics.exvo.local'
 Exvo::Helpers.preview_uri  => 'http://preview.exvo.local'
+Exvo::Helpers.store_uri    => 'http://store.exvo.local'
 ```
 
 
@@ -70,6 +72,7 @@ ENV['INBOX_HOST']    = 'test.inbox.exvo.local'
 ENV['MUSIC_HOST']    = 'test.music.exvo.local'
 ENV['PICS_HOST']     = 'test.pics.exvo.local'
 ENV['PREVIEW_HOST']  = 'test.preview.exvo.local'
+ENV['STORE_HOST']    = 'test.store.exvo.local'
 ```
 
 The other one is to set it in the application's config file:
@@ -95,6 +98,7 @@ Exvo::Helpers.inbox_host    = 'test.inbox.exvo.local'
 Exvo::Helpers.music_host    = 'test.music.exvo.local'
 Exvo::Helpers.pics_host     = 'test.pics.exvo.local'
 Exvo::Helpers.preview_host  = 'test.preview.exvo.local'
+Exvo::Helpers.store_host    = 'test.store.exvo.local'
 ```
 
 
