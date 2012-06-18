@@ -2,6 +2,11 @@
 
 Note, that only significant changes are listed.
 
+## 0.5.1 (2012-06-18)
+
+* host/uri helpers for store app
+
+
 ## 0.5.0 (2012-06-15)
 
 * all staging apps now use 'exvo.co' domain
