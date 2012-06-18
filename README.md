@@ -131,7 +131,7 @@ All examples are for the 'development' environment.
 Note, that this helper does not support full API of Rails' `stylesheet_link_tag` (works best with only one CSS path as argument).
 
 ```ruby
-= themes_stylesheet_link_tag "frost/all", :madia => 'all'
+= themes_stylesheet_link_tag "frost/all", :media => 'all'
 ```
 
 =>
