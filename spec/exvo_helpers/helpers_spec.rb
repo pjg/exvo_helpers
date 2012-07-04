@@ -34,7 +34,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.auth_uri.should match('auth.exvo.com') }
     specify { Exvo::Helpers.cdn_uri.should match('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_uri.should match('cfs.exvo.com') }
-    specify { Exvo::Helpers.desktop_uri.should match('www.exvo.com') }
+    specify { Exvo::Helpers.desktop_uri.should match('home.exvo.com') }
     specify { Exvo::Helpers.themes_uri.should match('themes.exvo.com') }
     specify { Exvo::Helpers.blog_uri.should match('blog.exvo.com') }
     specify { Exvo::Helpers.contacts_uri.should match('contacts.exvo.com') }
@@ -49,7 +49,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.auth_host.should match('auth.exvo.com') }
     specify { Exvo::Helpers.cdn_host.should eql('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
-    specify { Exvo::Helpers.desktop_host.should eql('www.exvo.com') }
+    specify { Exvo::Helpers.desktop_host.should eql('home.exvo.com') }
     specify { Exvo::Helpers.themes_host.should eql('themes.exvo.com') }
     specify { Exvo::Helpers.blog_host.should eql('blog.exvo.com') }
     specify { Exvo::Helpers.contacts_host.should eql('contacts.exvo.com') }
@@ -68,7 +68,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.auth_host.should match('auth.exvo.co') }
     specify { Exvo::Helpers.cdn_host.should eql('d1by559a994699.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.co') }
-    specify { Exvo::Helpers.desktop_host.should eql('www.exvo.co') }
+    specify { Exvo::Helpers.desktop_host.should eql('home.exvo.co') }
     specify { Exvo::Helpers.themes_host.should eql('themes.exvo.co') }
     specify { Exvo::Helpers.blog_host.should eql('blog.exvo.co') }
     specify { Exvo::Helpers.contacts_host.should eql('contacts.exvo.co') }

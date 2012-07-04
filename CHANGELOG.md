@@ -2,6 +2,11 @@
 
 Note, that only significant changes are listed.
 
+## 0.5.2 (2012-07-..)
+
+* desktop_host is now 'home.exvo.com'
+
+
 ## 0.5.1 (2012-06-18)
 
 * host/uri helpers for store app
