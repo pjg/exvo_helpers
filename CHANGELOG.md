@@ -2,7 +2,7 @@
 
 Note, that only significant changes are listed.
 
-## 0.5.2 (2012-07-..)
+## 0.5.2 (2012-07-05)
 
 * desktop is now at 'http://home.exvo.com'
 * blog is now at 'http://www.exvo.com/blog'
