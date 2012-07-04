@@ -36,7 +36,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.cfs_uri.should match('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_uri.should match('home.exvo.com') }
     specify { Exvo::Helpers.themes_uri.should match('themes.exvo.com') }
-    specify { Exvo::Helpers.blog_uri.should match('blog.exvo.com') }
+    specify { Exvo::Helpers.blog_uri.should match('www.exvo.com/blog') }
     specify { Exvo::Helpers.contacts_uri.should match('contacts.exvo.com') }
     specify { Exvo::Helpers.inbox_uri.should match('inbox.exvo.com') }
     specify { Exvo::Helpers.music_uri.should match('music.exvo.com') }
@@ -51,7 +51,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_host.should eql('home.exvo.com') }
     specify { Exvo::Helpers.themes_host.should eql('themes.exvo.com') }
-    specify { Exvo::Helpers.blog_host.should eql('blog.exvo.com') }
+    specify { Exvo::Helpers.blog_host.should eql('www.exvo.com') }
     specify { Exvo::Helpers.contacts_host.should eql('contacts.exvo.com') }
     specify { Exvo::Helpers.inbox_host.should eql('inbox.exvo.com') }
     specify { Exvo::Helpers.music_host.should eql('music.exvo.com') }
@@ -70,7 +70,7 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.co') }
     specify { Exvo::Helpers.desktop_host.should eql('home.exvo.co') }
     specify { Exvo::Helpers.themes_host.should eql('themes.exvo.co') }
-    specify { Exvo::Helpers.blog_host.should eql('blog.exvo.co') }
+    specify { Exvo::Helpers.blog_host.should eql('www.exvo.co') }
     specify { Exvo::Helpers.contacts_host.should eql('contacts.exvo.co') }
     specify { Exvo::Helpers.inbox_host.should eql('inbox.exvo.co') }
     specify { Exvo::Helpers.music_host.should eql('music.exvo.co') }

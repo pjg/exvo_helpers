@@ -4,7 +4,8 @@ Note, that only significant changes are listed.
 
 ## 0.5.2 (2012-07-..)
 
-* desktop_host is now 'home.exvo.com'
+* desktop is now at 'http://home.exvo.com'
+* blog is now at 'http://www.exvo.com/blog'
 
 
 ## 0.5.1 (2012-06-18)
