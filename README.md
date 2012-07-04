@@ -20,7 +20,7 @@ Exvo::Helpers.sso_cookie_domain => 'exvo.local'
 Exvo::Helpers.sso_cookie_secret => 'some secret cookie signing key'
 
 Exvo::Helpers.auth_host     => 'auth.exvo.local'
-Exvo::Helpers.cdn_host      => 'www.exvo.local'
+Exvo::Helpers.cdn_host      => 'home.exvo.local'
 Exvo::Helpers.cfs_host      => 'cfs.exvo.local'
 Exvo::Helpers.desktop_host  => 'home.exvo.local'
 Exvo::Helpers.themes_host   => 'themes.exvo.local'
@@ -33,7 +33,7 @@ Exvo::Helpers.preview_host  => 'preview.exvo.local'
 Exvo::Helpers.store_host    => 'store.exvo.local'
 
 Exvo::Helpers.auth_uri     => 'http://auth.exvo.local'
-Exvo::Helpers.cdn_uri      => 'http://www.exvo.local'
+Exvo::Helpers.cdn_uri      => 'http://home.exvo.local'
 Exvo::Helpers.cfs_uri      => 'http://cfs.exvo.local'
 Exvo::Helpers.desktop_uri  => 'http://home.exvo.local'
 Exvo::Helpers.themes_uri   => 'http://themes.exvo.local'
@@ -122,11 +122,11 @@ All examples are for the 'development' environment.
 =>
 
 ```html
-<script src="http://www.exvo.local/javascripts/bundles/plugins.js" type="text/javascript"></script>
-<script src="http://www.exvo.local/javascripts/bundles/utils.js" type="text/javascript"></script>
-<script src="http://www.exvo.local/javascripts/bundles/widgets.js" type="text/javascript"></script>
-<script src="http://www.exvo.local/javascripts/bundles/dock.js" type="text/javascript"></script>
-<script src="http://www.exvo.local/javascripts/bundles/uploader.js" type="text/javascript"></script>
+<script src="http://home.exvo.local/javascripts/bundles/plugins.js" type="text/javascript"></script>
+<script src="http://home.exvo.local/javascripts/bundles/utils.js" type="text/javascript"></script>
+<script src="http://home.exvo.local/javascripts/bundles/widgets.js" type="text/javascript"></script>
+<script src="http://home.exvo.local/javascripts/bundles/dock.js" type="text/javascript"></script>
+<script src="http://home.exvo.local/javascripts/bundles/uploader.js" type="text/javascript"></script>
 ```
 
 
