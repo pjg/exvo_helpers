@@ -19,7 +19,10 @@ Exvo::Helpers.auth_client_secret => nil
 Exvo::Helpers.sso_cookie_domain => 'exvo.local'
 Exvo::Helpers.sso_cookie_secret => 'some secret cookie signing key'
 
+Exvo::Helpers.budget_require_ssl => false
+
 Exvo::Helpers.auth_host     => 'auth.exvo.local'
+Exvo::Helpers.budget_host   => 'budget.exvo.local'
 Exvo::Helpers.cdn_host      => 'home.exvo.local'
 Exvo::Helpers.cfs_host      => 'cfs.exvo.local'
 Exvo::Helpers.desktop_host  => 'home.exvo.local'
@@ -33,6 +36,7 @@ Exvo::Helpers.preview_host  => 'preview.exvo.local'
 Exvo::Helpers.store_host    => 'store.exvo.local'
 
 Exvo::Helpers.auth_uri     => 'http://auth.exvo.local'
+Exvo::Helpers.budget_uri   => 'http://budget.exvo.local'
 Exvo::Helpers.cdn_uri      => 'http://home.exvo.local'
 Exvo::Helpers.cfs_uri      => 'http://cfs.exvo.local'
 Exvo::Helpers.desktop_uri  => 'http://home.exvo.local'
@@ -61,7 +65,10 @@ ENV['AUTH_CLIENT_SECRET'] = 'abc'
 ENV['SSO_COOKIE_DOMAIN'] = 'exvo.dev'
 ENV['SSO_COOKIE_SECRET'] = 'exvo.dev'
 
+ENV['BUDGET_REQUIRE_SSL'] = 'true'
+
 ENV['AUTH_HOST']     = 'test.auth.exvo.com'
+ENV['BUDGET_HOST']   = 'test.budget.exvo.com'
 ENV['CDN_HOST']      = 'test.cdn.exvo.com'
 ENV['CFS_HOST']      = 'test.cfs.exvo.com'
 ENV['DESKTOP_HOST']  = 'test.exvo.com'
@@ -87,7 +94,10 @@ Exvo::Helpers.auth_client_secret = 'abc'
 Exvo::Helpers.sso_cookie_domain = 'exvo.dev'
 Exvo::Helpers.sso_cookie_key = 'some secret key'
 
+Exvo::Helpers.budget_require_ssl = true
+
 Exvo::Helpers.auth_host     = 'test.auth.exvo.com'
+Exvo::Helpers.budget_host   = 'test.budget.exvo.com'
 Exvo::Helpers.cdn_host      = 'test.cdn.exvo.com'
 Exvo::Helpers.cfs_host      = 'test.cfs.exvo.com'
 Exvo::Helpers.desktop_host  = 'test.exvo.com'

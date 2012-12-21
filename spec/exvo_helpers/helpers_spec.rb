@@ -31,11 +31,12 @@ describe Exvo::Helpers do
   end
 
   describe "uri methods in production environment" do
-    specify { Exvo::Helpers.auth_uri.should match('auth.exvo.com') }
-    specify { Exvo::Helpers.cdn_uri.should match('d33gjlr95u9pgf.cloudfront.net') }
-    specify { Exvo::Helpers.cfs_uri.should match('cfs.exvo.com') }
+    specify { Exvo::Helpers.auth_uri.should match(/\Ahttps:\/\/auth.exvo.com\Z/) }
+    specify { Exvo::Helpers.budget_uri.should match(/\Ahttps:\/\/budget.exvo.com\Z/) }
+    specify { Exvo::Helpers.cdn_uri.should match(/\A\/\/d33gjlr95u9pgf.cloudfront.net\Z/) }
+    specify { Exvo::Helpers.cfs_uri.should match(/\A\/\/cfs.exvo.com\Z/) }
     specify { Exvo::Helpers.desktop_uri.should match('home.exvo.com') }
-    specify { Exvo::Helpers.themes_uri.should match('themes.exvo.com') }
+    specify { Exvo::Helpers.themes_uri.should match(/\A\/\/themes.exvo.com\Z/) }
     specify { Exvo::Helpers.blog_uri.should match('www.exvo.com/blog') }
     specify { Exvo::Helpers.contacts_uri.should match('contacts.exvo.com') }
     specify { Exvo::Helpers.inbox_uri.should match('inbox.exvo.com') }
@@ -47,6 +48,7 @@ describe Exvo::Helpers do
 
   describe "host methods in production environment" do
     specify { Exvo::Helpers.auth_host.should match('auth.exvo.com') }
+    specify { Exvo::Helpers.budget_host.should match('budget.exvo.com') }
     specify { Exvo::Helpers.cdn_host.should eql('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_host.should eql('home.exvo.com') }
@@ -66,6 +68,7 @@ describe Exvo::Helpers do
     end
 
     specify { Exvo::Helpers.auth_host.should match('auth.exvo.co') }
+    specify { Exvo::Helpers.budget_host.should match('budget.exvo.co') }
     specify { Exvo::Helpers.cdn_host.should eql('d1by559a994699.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.co') }
     specify { Exvo::Helpers.desktop_host.should eql('home.exvo.co') }
@@ -89,6 +92,10 @@ describe Exvo::Helpers do
 
   describe "#sso_cookie_domain by default for production env" do
     specify { Exvo::Helpers.sso_cookie_domain.should eq("exvo.com") }
+  end
+
+  describe "#budget_require_ssl by default for production env" do
+    specify { Exvo::Helpers.budget_require_ssl.should be_true }
   end
 
   describe "ENV settings override the defaults" do
@@ -156,6 +163,7 @@ describe Exvo::Helpers do
     Exvo::Helpers.sso_cookie_secret = nil
 
     Exvo::Helpers.auth_host = nil
+    Exvo::Helpers.budget_host = nil
     Exvo::Helpers.cdn_host = nil
     Exvo::Helpers.cfs_host = nil
     Exvo::Helpers.desktop_host = nil
