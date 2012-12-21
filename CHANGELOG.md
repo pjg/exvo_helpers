@@ -2,6 +2,11 @@
 
 Note, that only significant changes are listed.
 
+## 0.5.3 (2012-12-20)
+
+* new `budget_host`, `budget_uri` and `budget_require_ssl` helpers
+
+
 ## 0.5.2 (2012-07-05)
 
 * desktop is now at 'http://home.exvo.com'
