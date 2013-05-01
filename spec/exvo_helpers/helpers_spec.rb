@@ -33,10 +33,10 @@ describe Exvo::Helpers do
   describe "uri methods in production environment" do
     specify { Exvo::Helpers.auth_uri.should match(/\Ahttps:\/\/auth.exvo.com\Z/) }
     specify { Exvo::Helpers.budget_uri.should match(/\Ahttps:\/\/budget.exvo.com\Z/) }
-    specify { Exvo::Helpers.cdn_uri.should match(/\A\/\/d33gjlr95u9pgf.cloudfront.net\Z/) }
-    specify { Exvo::Helpers.cfs_uri.should match(/\A\/\/cfs.exvo.com\Z/) }
+    specify { Exvo::Helpers.cdn_uri.should match(/\Ahttps:\/\/d33gjlr95u9pgf.cloudfront.net\Z/) }
+    specify { Exvo::Helpers.cfs_uri.should match(/\Ahttps:\/\/cfs.exvo.com\Z/) }
     specify { Exvo::Helpers.desktop_uri.should match('home.exvo.com') }
-    specify { Exvo::Helpers.themes_uri.should match(/\A\/\/themes.exvo.com\Z/) }
+    specify { Exvo::Helpers.themes_uri.should match(/\Ahttps:\/\/themes.exvo.com\Z/) }
     specify { Exvo::Helpers.blog_uri.should match('www.exvo.com/blog') }
     specify { Exvo::Helpers.contacts_uri.should match('contacts.exvo.com') }
     specify { Exvo::Helpers.inbox_uri.should match('inbox.exvo.com') }

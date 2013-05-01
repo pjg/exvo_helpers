@@ -10,7 +10,7 @@ module Exvo
         # def self.cdn_uri
         #   protocol = 'http://'
         #   protocol = 'https://' if (service == "auth" && auth_require_ssl) || (service == "budget" && budget_require_ssl)
-        #   protocol = '//' if ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production
+        #   protocol = 'https://' if ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production
         #   suffix = '/blog' if service == "blog"
         #   protocol + cdn_host + suffix.to_s
         # end
@@ -20,9 +20,8 @@ module Exvo
           # explicit https for auth & budget
           protocol = 'https://' if (service == "auth" && send(:auth_require_ssl)) || (service == "budget" && send(:budget_require_ssl))
 
-          # special link starting with '//' in production so that the webserver can choose between HTTP and HTTPS
-          # but only for those apps/services that have proper SSL support (i.e. valid certificates)
-          protocol = '//' if ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production
+          # explicit https for cdn, cfs & themes in production
+          protocol = 'https://' if ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production
 
           # blog now lives at http://www.exvo.com/blog, so adding '/blog' suffix is required
           suffix = '/blog' if service == "blog"
