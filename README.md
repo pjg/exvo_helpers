@@ -11,15 +11,12 @@ Results are from the 'development' Rails environment:
 
 ```ruby
 Exvo::Helpers.auth_debug       => false
-Exvo::Helpers.auth_require_ssl => false
 
 Exvo::Helpers.auth_client_id     => nil
 Exvo::Helpers.auth_client_secret => nil
 
 Exvo::Helpers.sso_cookie_domain => 'exvo.local'
 Exvo::Helpers.sso_cookie_secret => 'some secret cookie signing key'
-
-Exvo::Helpers.budget_require_ssl => false
 
 Exvo::Helpers.auth_host     => 'auth.exvo.local'
 Exvo::Helpers.budget_host   => 'budget.exvo.local'
@@ -55,15 +52,12 @@ There are two ways to do it. One is by the means of ENV variables (the preferred
 
 ```ruby
 ENV['AUTH_DEBUG']       = 'true'
-ENV['AUTH_REQUIRE_SSL'] = 'true'
 
 ENV['AUTH_CLIENT_ID']     = '123'
 ENV['AUTH_CLIENT_SECRET'] = 'abc'
 
 ENV['SSO_COOKIE_DOMAIN'] = 'exvo.dev'
 ENV['SSO_COOKIE_SECRET'] = 'exvo.dev'
-
-ENV['BUDGET_REQUIRE_SSL'] = 'true'
 
 ENV['AUTH_HOST']     = 'test.auth.exvo.com'
 ENV['BUDGET_HOST']   = 'test.budget.exvo.com'
@@ -83,15 +77,12 @@ The other one is to set it in the application's config file:
 
 ```ruby
 Exvo::Helpers.auth_debug       = true
-Exvo::Helpers.auth_require_ssl = true
 
 Exvo::Helpers.auth_client_id     = '123'
 Exvo::Helpers.auth_client_secret = 'abc'
 
 Exvo::Helpers.sso_cookie_domain = 'exvo.dev'
 Exvo::Helpers.sso_cookie_key = 'some secret key'
-
-Exvo::Helpers.budget_require_ssl = true
 
 Exvo::Helpers.auth_host     = 'test.auth.exvo.com'
 Exvo::Helpers.budget_host   = 'test.budget.exvo.com'

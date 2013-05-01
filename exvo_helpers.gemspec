@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.email       = ["pawel.goscicki@gmail.com"]
   gem.homepage    = "https://github.com/Exvo/exvo_helpers/"
   gem.summary     = %q{Collection of helper methods for various Exvo related apps/services}
-  gem.description = %q{Ruby gem providing various helper methods, like auth_host, auth_uri, auth_require_ssl, cdn_host, etc.}
+  gem.description = %q{Ruby gem providing various helper methods, like auth_host, auth_uri, cdn_host, etc.}
   gem.license     = "MIT"
 
   gem.files         = `git ls-files`.split("\n")

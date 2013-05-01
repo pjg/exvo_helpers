@@ -9,19 +9,15 @@ module Exvo
 
         # def self.cdn_uri
         #   protocol = 'http://'
-        #   protocol = 'https://' if (service == "auth" && auth_require_ssl) || (service == "budget" && budget_require_ssl)
-        #   protocol = 'https://' if ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production
+        #   protocol = 'https://' if %w(auth budget cdn cfs themes).include?(service) && env.to_sym == :production
         #   suffix = '/blog' if service == "blog"
         #   protocol + cdn_host + suffix.to_s
         # end
         define_method "#{service}_uri" do
           protocol = 'http://'
 
-          # explicit https for auth & budget
-          protocol = 'https://' if (service == "auth" && send(:auth_require_ssl)) || (service == "budget" && send(:budget_require_ssl))
-
-          # explicit https for cdn, cfs & themes in production
-          protocol = 'https://' if ["cdn", "cfs", "themes"].include?(service) && env.to_sym == :production
+          # explicit https
+          protocol = 'https://' if %w(auth budget cdn cfs themes).include?(service) && env.to_sym == :production
 
           # blog now lives at http://www.exvo.com/blog, so adding '/blog' suffix is required
           suffix = '/blog' if service == "blog"
@@ -59,7 +55,7 @@ module Exvo
     # Dynamically define class methods
     class << self
 
-      %w(debug require_ssl).each do |option|
+      %w(debug).each do |option|
 
         # def self.auth_debug
         #   return @@auth_debug if defined?(@@auth_debug) && !@@auth_debug.nil?
@@ -168,43 +164,6 @@ module Exvo
     end
 
 
-    # BUDGET
-
-    # Dynamically define class methods
-    class << self
-
-      %w(require_ssl).each do |option|
-
-        # def self.budget_require_ssl
-        #   return @@budget_require_ssl if defined?(@@budget_require_ssl) && !@@budget_require_ssl.nil?
-        #   value = true if ENV["BUDGET_REQUIRE_SSL"] =~ /true/i
-        #   value = false if ENV["BUDGET_REQUIRE_SSL"] =~ /false/i
-        #   value = default_opts[env.to_sym]["budget_require_ssl".to_sym] if value.nil?
-        #   @@budget_require_ssl = value
-        # end
-        define_method "budget_#{option}" do
-          if class_variable_defined?("@@budget_#{option}") and !class_variable_get("@@budget_#{option}").nil?
-            class_variable_get("@@budget_#{option}")
-          else
-            value = true if ENV["BUDGET_#{option.upcase}"] =~ /true/i
-            value = false if ENV["BUDGET_#{option.upcase}"] =~ /false/i
-            value = default_opts[env.to_sym]["budget_#{option}".to_sym] if value.nil?
-            class_variable_set("@@budget_#{option}", value)
-          end
-        end
-
-        # def self.budget_require_ssl=(debug)
-        #   @@budget_require_ssl = debug
-        # end
-        define_method "budget_#{option}=" do |value|
-          class_variable_set("@@budget_#{option}", value)
-        end
-
-      end
-
-    end
-
-
     # ENV
 
     # by default fall back to production; this way the omniauth-exvo's gem specs can pass
@@ -228,10 +187,8 @@ module Exvo
         :production => {
           :auth_debug => false,
           :auth_host => 'auth.exvo.com',
-          :auth_require_ssl => true,
           :sso_cookie_domain => 'exvo.com',
           :budget_host => 'budget.exvo.com',
-          :budget_require_ssl => true,
           :cdn_host => 'd33gjlr95u9pgf.cloudfront.net', # cloudfront.net so we can use https (cdn.exvo.com via https does not work properly)
           :cfs_host => 'cfs.exvo.com',
           :desktop_host => 'home.exvo.com',
@@ -246,10 +203,8 @@ module Exvo
         :staging => {
           :auth_debug => false,
           :auth_host => 'auth.exvo.co',
-          :auth_require_ssl => false,
           :sso_cookie_domain => 'exvo.co',
           :budget_host => 'budget.exvo.co',
-          :budget_require_ssl => false,
           :cdn_host => 'd1by559a994699.cloudfront.net',
           :cfs_host => 'cfs.exvo.co',
           :desktop_host => 'home.exvo.co',
@@ -264,10 +219,8 @@ module Exvo
         :development => {
           :auth_debug => false,
           :auth_host => 'auth.exvo.local',
-          :auth_require_ssl => false,
           :sso_cookie_domain => 'exvo.local',
           :budget_host => 'budget.exvo.local',
-          :budget_require_ssl => false,
           :cdn_host => 'home.exvo.local',
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'home.exvo.local',
@@ -282,10 +235,8 @@ module Exvo
         :test => {
           :auth_debug => false,
           :auth_host => 'auth.exvo.local',
-          :auth_require_ssl => false,
           :sso_cookie_domain => 'exvo.local',
           :budget_host => 'budget.exvo.local',
-          :budget_require_ssl => false,
           :cdn_host => 'home.exvo.local',
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'home.exvo.local',

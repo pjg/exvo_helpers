@@ -83,16 +83,8 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.auth_debug.should be_false }
   end
 
-  describe "#auth_require_ssl by default for production env" do
-    specify { Exvo::Helpers.auth_require_ssl.should be_true }
-  end
-
   describe "#sso_cookie_domain by default for production env" do
     specify { Exvo::Helpers.sso_cookie_domain.should eq("exvo.com") }
-  end
-
-  describe "#budget_require_ssl by default for production env" do
-    specify { Exvo::Helpers.budget_require_ssl.should be_true }
   end
 
   describe "ENV settings override the defaults" do
@@ -100,7 +92,6 @@ describe Exvo::Helpers do
     let(:cdn_host) { "test.cdn.exvo.com" }
     let(:auth_client_id) { '123' }
     let(:auth_client_secret) { 'abc' }
-    let(:auth_require_ssl) { 'false' }
     let(:sso_cookie_domain) { "exvo.dev" }
     let(:sso_cookie_secret) { "secret" }
 
@@ -109,7 +100,6 @@ describe Exvo::Helpers do
       ENV["CDN_HOST"] = cdn_host
       ENV["AUTH_CLIENT_ID"] = auth_client_id
       ENV["AUTH_CLIENT_SECRET"] = auth_client_secret
-      ENV["AUTH_REQUIRE_SSL"] = auth_require_ssl
       ENV["SSO_COOKIE_DOMAIN"] = sso_cookie_domain
       ENV["SSO_COOKIE_SECRET"] = sso_cookie_secret
     end
@@ -117,7 +107,6 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
     specify { Exvo::Helpers.auth_client_id.should eq(auth_client_id) }
     specify { Exvo::Helpers.auth_client_secret.should eq(auth_client_secret) }
-    specify { Exvo::Helpers.auth_uri.should match(/http:\/\//) }
     specify { Exvo::Helpers.sso_cookie_domain.should eql(sso_cookie_domain) }
     specify { Exvo::Helpers.sso_cookie_secret.should eql(sso_cookie_secret) }
   end
@@ -127,7 +116,6 @@ describe Exvo::Helpers do
     let(:cdn_host) { "new.cdn.exvo.com" }
     let(:auth_client_id) { '123' }
     let(:auth_client_secret) { 'abc' }
-    let(:auth_require_ssl) { false }
     let(:sso_cookie_domain) { "exvo.new" }
     let(:sso_cookie_secret) { "abc" }
 
@@ -135,7 +123,6 @@ describe Exvo::Helpers do
       Exvo::Helpers.cdn_host = cdn_host
       Exvo::Helpers.auth_client_id = auth_client_id
       Exvo::Helpers.auth_client_secret = auth_client_secret
-      Exvo::Helpers.auth_require_ssl = auth_require_ssl
       Exvo::Helpers.sso_cookie_domain = sso_cookie_domain
       Exvo::Helpers.sso_cookie_secret = sso_cookie_secret
     end
@@ -143,7 +130,6 @@ describe Exvo::Helpers do
     specify { Exvo::Helpers.cdn_host.should eql(cdn_host) }
     specify { Exvo::Helpers.auth_client_id.should eq(auth_client_id) }
     specify { Exvo::Helpers.auth_client_secret.should eq(auth_client_secret) }
-    specify { Exvo::Helpers.auth_uri.should match(/http:\/\//) }
     specify { Exvo::Helpers.sso_cookie_domain.should eql(sso_cookie_domain) }
     specify { Exvo::Helpers.sso_cookie_secret.should eql(sso_cookie_secret) }
   end
@@ -153,7 +139,6 @@ describe Exvo::Helpers do
     Exvo::Helpers.env = nil
 
     Exvo::Helpers.auth_debug = nil
-    Exvo::Helpers.auth_require_ssl = nil
     Exvo::Helpers.auth_client_id = nil
     Exvo::Helpers.auth_client_secret = nil
     Exvo::Helpers.sso_cookie_domain = nil
@@ -177,7 +162,6 @@ describe Exvo::Helpers do
     ENV.delete("AUTH_DEBUG")
     ENV.delete("AUTH_CLIENT_ID")
     ENV.delete("AUTH_CLIENT_SECRET")
-    ENV.delete("AUTH_REQUIRE_SSL")
     ENV.delete("SSO_COOKIE_DOMAIN")
     ENV.delete("SSO_COOKIE_SECRET")
   end
