@@ -2,7 +2,8 @@
 
 Note, that only significant changes are listed.
 
-## DEV
+
+## 0.6.0 (2013-05-01)
 
 * no more protocol-agnostic links ('//themes...'); make them explicit https in production
 * remove 'Store' helpers (Exvo-Store is no more)
