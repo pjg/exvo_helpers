@@ -5,7 +5,7 @@ module Exvo
     # Dynamically define class methods
     class << self
 
-      %w(auth budget cdn cfs desktop themes blog contacts inbox music pics preview store).each do |service|
+      %w(auth budget cdn cfs desktop themes blog contacts inbox music pics preview).each do |service|
 
         # def self.cdn_uri
         #   protocol = 'http://'
@@ -241,8 +241,7 @@ module Exvo
           :inbox_host => 'inbox.exvo.com',
           :music_host => 'music.exvo.com',
           :pics_host => 'pics.exvo.com',
-          :preview_host => 'preview.exvo.com',
-          :store_host => 'store.exvo.com'
+          :preview_host => 'preview.exvo.com'
         },
         :staging => {
           :auth_debug => false,
@@ -260,8 +259,7 @@ module Exvo
           :inbox_host => 'inbox.exvo.co',
           :music_host => 'music.exvo.co',
           :pics_host => 'pics.exvo.co',
-          :preview_host => 'preview.exvo.co',
-          :store_host => 'store.exvo.co'
+          :preview_host => 'preview.exvo.co'
         },
         :development => {
           :auth_debug => false,
@@ -279,8 +277,7 @@ module Exvo
           :inbox_host => 'inbox.exvo.local',
           :music_host => 'music.exvo.local',
           :pics_host => 'pics.exvo.local',
-          :preview_host => 'preview.exvo.local',
-          :store_host => 'store.exvo.local'
+          :preview_host => 'preview.exvo.local'
         },
         :test => {
           :auth_debug => false,
@@ -298,8 +295,7 @@ module Exvo
           :inbox_host => 'inbox.exvo.local',
           :music_host => 'music.exvo.local',
           :pics_host => 'pics.exvo.local',
-          :preview_host => 'preview.exvo.local',
-          :store_host => 'store.exvo.local'
+          :preview_host => 'preview.exvo.local'
         }
       }
     end

@@ -5,6 +5,7 @@ Note, that only significant changes are listed.
 ## DEV
 
 * no more protocol-agnostic links ('//themes...'); make them explicit https in production
+* remove 'Store' helpers (Store is no more)
 
 
 ## 0.5.3 (2012-12-20)
