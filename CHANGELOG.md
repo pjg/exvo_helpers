@@ -2,6 +2,13 @@
 
 Note, that only significant changes are listed.
 
+## DEV
+
+* no more protocol-agnostic links ('//themes...'); make them explicit https in production
+* remove 'Store' helpers (Exvo-Store is no more)
+* auth/budget links are SSL-only from now (remove `auth_require_ssl` and `budget_require_ssl` options)
+
+
 ## 0.5.3 (2012-12-20)
 
 * new `budget_host`, `budget_uri` and `budget_require_ssl` helpers

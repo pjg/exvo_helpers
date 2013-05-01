@@ -11,15 +11,12 @@ Results are from the 'development' Rails environment:
 
 ```ruby
 Exvo::Helpers.auth_debug       => false
-Exvo::Helpers.auth_require_ssl => false
 
 Exvo::Helpers.auth_client_id     => nil
 Exvo::Helpers.auth_client_secret => nil
 
 Exvo::Helpers.sso_cookie_domain => 'exvo.local'
 Exvo::Helpers.sso_cookie_secret => 'some secret cookie signing key'
-
-Exvo::Helpers.budget_require_ssl => false
 
 Exvo::Helpers.auth_host     => 'auth.exvo.local'
 Exvo::Helpers.budget_host   => 'budget.exvo.local'
@@ -33,7 +30,6 @@ Exvo::Helpers.inbox_host    => 'inbox.exvo.local'
 Exvo::Helpers.music_host    => 'music.exvo.local'
 Exvo::Helpers.pics_host     => 'pics.exvo.local'
 Exvo::Helpers.preview_host  => 'preview.exvo.local'
-Exvo::Helpers.store_host    => 'store.exvo.local'
 
 Exvo::Helpers.auth_uri     => 'http://auth.exvo.local'
 Exvo::Helpers.budget_uri   => 'http://budget.exvo.local'
@@ -47,7 +43,6 @@ Exvo::Helpers.inbox_uri    => 'http://inbox.exvo.local'
 Exvo::Helpers.music_uri    => 'http://music.exvo.local'
 Exvo::Helpers.pics_uri     => 'http://pics.exvo.local'
 Exvo::Helpers.preview_uri  => 'http://preview.exvo.local'
-Exvo::Helpers.store_uri    => 'http://store.exvo.local'
 ```
 
 
@@ -57,15 +52,12 @@ There are two ways to do it. One is by the means of ENV variables (the preferred
 
 ```ruby
 ENV['AUTH_DEBUG']       = 'true'
-ENV['AUTH_REQUIRE_SSL'] = 'true'
 
 ENV['AUTH_CLIENT_ID']     = '123'
 ENV['AUTH_CLIENT_SECRET'] = 'abc'
 
 ENV['SSO_COOKIE_DOMAIN'] = 'exvo.dev'
 ENV['SSO_COOKIE_SECRET'] = 'exvo.dev'
-
-ENV['BUDGET_REQUIRE_SSL'] = 'true'
 
 ENV['AUTH_HOST']     = 'test.auth.exvo.com'
 ENV['BUDGET_HOST']   = 'test.budget.exvo.com'
@@ -79,22 +71,18 @@ ENV['INBOX_HOST']    = 'test.inbox.exvo.local'
 ENV['MUSIC_HOST']    = 'test.music.exvo.local'
 ENV['PICS_HOST']     = 'test.pics.exvo.local'
 ENV['PREVIEW_HOST']  = 'test.preview.exvo.local'
-ENV['STORE_HOST']    = 'test.store.exvo.local'
 ```
 
 The other one is to set it in the application's config file:
 
 ```ruby
 Exvo::Helpers.auth_debug       = true
-Exvo::Helpers.auth_require_ssl = true
 
 Exvo::Helpers.auth_client_id     = '123'
 Exvo::Helpers.auth_client_secret = 'abc'
 
 Exvo::Helpers.sso_cookie_domain = 'exvo.dev'
 Exvo::Helpers.sso_cookie_key = 'some secret key'
-
-Exvo::Helpers.budget_require_ssl = true
 
 Exvo::Helpers.auth_host     = 'test.auth.exvo.com'
 Exvo::Helpers.budget_host   = 'test.budget.exvo.com'
@@ -108,7 +96,6 @@ Exvo::Helpers.inbox_host    = 'test.inbox.exvo.local'
 Exvo::Helpers.music_host    = 'test.music.exvo.local'
 Exvo::Helpers.pics_host     = 'test.pics.exvo.local'
 Exvo::Helpers.preview_host  = 'test.preview.exvo.local'
-Exvo::Helpers.store_host    = 'test.store.exvo.local'
 ```
 
 
@@ -206,4 +193,4 @@ KISSmetrics javascript snippet to track users. Note, that you need to have `ENV[
 
 
 
-Copyright © 2011-2012 Exvo.com Development BV, released under the MIT license
+Copyright © 2011-2013 Exvo.com Development BV, released under the MIT license
