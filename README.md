@@ -206,4 +206,4 @@ KISSmetrics javascript snippet to track users. Note, that you need to have `ENV[
 
 
 
-Copyright © 2011-2012 Exvo.com Development BV, released under the MIT license
+Copyright © 2011-2013 Exvo.com Development BV, released under the MIT license
