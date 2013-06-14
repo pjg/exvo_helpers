@@ -2,6 +2,10 @@
 
 Note, that only significant changes are listed.
 
+## 0.6.1 (2013-06-14)
+
+* `bugherd` view helper
+
 
 ## 0.6.0 (2013-05-01)
 
