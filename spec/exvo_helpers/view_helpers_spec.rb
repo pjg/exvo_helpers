@@ -52,4 +52,12 @@ describe Exvo::ViewHelpers do
     specify { snippet.should match(%r(identify.+#{email})) }
   end
 
+  describe "#bugherd" do
+    let(:snippet) { view_helper.bugherd("123") }
+
+    specify { snippet.should match(/<script type='text\/javascript'>/) }
+    specify { snippet.should match(/www\.bugherd\.com/) }
+    specify { snippet.should match(/apikey=123/) }
+  end
+
 end

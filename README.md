@@ -191,6 +191,33 @@ KISSmetrics javascript snippet to track users. Note, that you need to have `ENV[
 ```
 
 
+### bugherd(apikey)
+
+Asynchronous Bugherd javascript snippet.
+
+```ruby
+= bugherd('yourapikey')
+```
+
+=>
+
+```html
+<script type="text/javascript">
+  (function (d, t) {
+    var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    ...
+```
+
+If you'd like to customize the position of the 'Send Feedback' button, you can do this with this CSS snippet:
+
+```css
+#_BH_frame {
+  left: 10px !important;
+}
+```
+
+The above code will move the button to the left side.
+
 
 
 Copyright © 2011-2013 Exvo.com Development BV, released under the MIT license

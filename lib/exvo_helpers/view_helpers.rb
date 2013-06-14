@@ -105,6 +105,21 @@ END
       out.respond_to?(:html_safe) ? out.html_safe : out
     end
 
+    def bugherd(apikey)
+      out = <<END
+<script type='text/javascript'>
+(function (d, t) {
+  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+  bh.type = 'text/javascript';
+  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=#{ apikey }';
+  s.parentNode.insertBefore(bh, s);
+  })(document, 'script');
+</script>
+END
+
+      out.respond_to?(:html_safe) ? out.html_safe : out
+    end
+
   end
 
 end
