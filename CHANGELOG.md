@@ -2,7 +2,7 @@
 
 Note, that only significant changes are listed.
 
-## 0.6.2 (...)
+## 0.6.2 (2013-06-24)
 
 * remove 'Blog' helpers (Blog is no more)
 * change 'Budget' host (it lives at `www.exvo.com` now)
