@@ -32,7 +32,7 @@ describe Exvo::Helpers do
 
   describe "uri methods in production environment" do
     specify { Exvo::Helpers.auth_uri.should match(/\Ahttps:\/\/auth.exvo.com\Z/) }
-    specify { Exvo::Helpers.budget_uri.should match(/\Ahttps:\/\/budget.exvo.com\Z/) }
+    specify { Exvo::Helpers.budget_uri.should match(/\Ahttps:\/\/www.exvo.com\Z/) }
     specify { Exvo::Helpers.cdn_uri.should match(/\Ahttps:\/\/d33gjlr95u9pgf.cloudfront.net\Z/) }
     specify { Exvo::Helpers.cfs_uri.should match(/\Ahttps:\/\/cfs.exvo.com\Z/) }
     specify { Exvo::Helpers.desktop_uri.should match('home.exvo.com') }
@@ -46,7 +46,7 @@ describe Exvo::Helpers do
 
   describe "host methods in production environment" do
     specify { Exvo::Helpers.auth_host.should match('auth.exvo.com') }
-    specify { Exvo::Helpers.budget_host.should match('budget.exvo.com') }
+    specify { Exvo::Helpers.budget_host.should match('www.exvo.com') }
     specify { Exvo::Helpers.cdn_host.should eql('d33gjlr95u9pgf.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.com') }
     specify { Exvo::Helpers.desktop_host.should eql('home.exvo.com') }
@@ -64,7 +64,7 @@ describe Exvo::Helpers do
     end
 
     specify { Exvo::Helpers.auth_host.should match('auth.exvo.co') }
-    specify { Exvo::Helpers.budget_host.should match('budget.exvo.co') }
+    specify { Exvo::Helpers.budget_host.should match('www.exvo.co') }
     specify { Exvo::Helpers.cdn_host.should eql('d1by559a994699.cloudfront.net') }
     specify { Exvo::Helpers.cfs_host.should eql('cfs.exvo.co') }
     specify { Exvo::Helpers.desktop_host.should eql('home.exvo.co') }
