@@ -5,13 +5,12 @@ module Exvo
     # Dynamically define class methods
     class << self
 
-      %w(auth budget cdn cfs desktop themes blog contacts inbox music pics preview).each do |service|
+      %w(auth budget cdn cfs desktop themes contacts inbox music pics preview).each do |service|
 
         # def self.cdn_uri
         #   protocol = 'http://'
         #   protocol = 'https://' if %w(auth budget cdn cfs themes).include?(service) && env.to_sym == :production
-        #   suffix = '/blog' if service == "blog"
-        #   protocol + cdn_host + suffix.to_s
+        #   protocol + cdn_host
         # end
         define_method "#{service}_uri" do
           protocol = 'http://'
@@ -19,10 +18,7 @@ module Exvo
           # explicit https
           protocol = 'https://' if %w(auth budget cdn cfs themes).include?(service) && env.to_sym == :production
 
-          # blog now lives at http://www.exvo.com/blog, so adding '/blog' suffix is required
-          suffix = '/blog' if service == "blog"
-
-          protocol + send("#{service}_host") + suffix.to_s
+          protocol + send("#{service}_host")
         end
 
         # def self.cdn_host
@@ -193,7 +189,6 @@ module Exvo
           :cfs_host => 'cfs.exvo.com',
           :desktop_host => 'home.exvo.com',
           :themes_host => 'themes.exvo.com',
-          :blog_host => 'www.exvo.com',
           :contacts_host => 'contacts.exvo.com',
           :inbox_host => 'inbox.exvo.com',
           :music_host => 'music.exvo.com',
@@ -209,7 +204,6 @@ module Exvo
           :cfs_host => 'cfs.exvo.co',
           :desktop_host => 'home.exvo.co',
           :themes_host => 'themes.exvo.co',
-          :blog_host => 'www.exvo.co',
           :contacts_host => 'contacts.exvo.co',
           :inbox_host => 'inbox.exvo.co',
           :music_host => 'music.exvo.co',
@@ -225,7 +219,6 @@ module Exvo
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'home.exvo.local',
           :themes_host => 'themes.exvo.local',
-          :blog_host => 'www.exvo.local',
           :contacts_host => 'contacts.exvo.local',
           :inbox_host => 'inbox.exvo.local',
           :music_host => 'music.exvo.local',
@@ -241,7 +234,6 @@ module Exvo
           :cfs_host => 'cfs.exvo.local',
           :desktop_host => 'home.exvo.local',
           :themes_host => 'themes.exvo.local',
-          :blog_host => 'www.exvo.local',
           :contacts_host => 'contacts.exvo.local',
           :inbox_host => 'inbox.exvo.local',
           :music_host => 'music.exvo.local',
