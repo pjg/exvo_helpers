@@ -2,6 +2,11 @@
 
 Note, that only significant changes are listed.
 
+## 0.6.3 (2013-07-02)
+
+* new `zendesk` view helper
+
+
 ## 0.6.2 (2013-06-24)
 
 * remove 'Blog' helpers (Blog is no more)
