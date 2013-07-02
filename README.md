@@ -10,8 +10,7 @@ This gem is used by both [omniauth-exvo](https://github.com/Exvo/omniauth-exvo/)
 Results are from the 'development' Rails environment:
 
 ```ruby
-Exvo::Helpers.auth_debug       => false
-
+Exvo::Helpers.auth_debug         => false
 Exvo::Helpers.auth_client_id     => nil
 Exvo::Helpers.auth_client_secret => nil
 
