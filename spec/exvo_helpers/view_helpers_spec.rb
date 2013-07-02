@@ -60,4 +60,14 @@ describe Exvo::ViewHelpers do
     specify { snippet.should match(/apikey=123/) }
   end
 
+  describe '#zendesk' do
+    let(:snippet) { view_helper.zendesk }
+
+    specify { snippet.should match(/<script type="text\/javascript">/) }
+    specify { snippet.should match(/Zenbox\.init/) }
+    specify { snippet.should match(/exvocom\.zendesk\.com/) }
+    specify { snippet.should match(/dropboxID/) }
+    specify { snippet.should match(/hide_tab/) }
+  end
+
 end

@@ -205,5 +205,31 @@ Asynchronous Bugherd javascript snippet.
 ```
 
 
+### zendesk
+
+Javascript popup with Zendesk support.
+
+```ruby
+= zendesk
+```
+
+=>
+
+```html
+<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
+<style type="text/css" media="screen, projection">
+  @import url(//assets.zendesk.com/external/zenbox/v2.6/zenbox.css);
+  ...
+```
+
+Remember to put the above snippet just before the closing `</body>` tag, otherwise it might not work.
+
+You must also place the link somewhere to show the actual Zendesk popup:
+
+```html
+<a href="http://exvocom.zendesk.com/account/dropboxes/20187392" onClick="script: Zenbox.show(); return false;">Open Feedback Tab</a>
+```
+
+
 
 Copyright © 2011-2013 Exvo.com Development BV, released under the MIT license

@@ -120,6 +120,32 @@ END
       out.respond_to?(:html_safe) ? out.html_safe : out
     end
 
+    def zendesk
+      out = <<END
+<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
+
+<style type="text/css" media="screen, projection">
+@import url(//assets.zendesk.com/external/zenbox/v2.6/zenbox.css);
+</style>
+
+<script type="text/javascript">
+if (typeof(Zenbox) !== "undefined") {
+  Zenbox.init({
+    dropboxID:   "20187392",
+    url:         "https://exvocom.zendesk.com",
+    tabTooltip:  "Support",
+    tabImageURL: "https://assets.zendesk.com/external/zenbox/images/tab_support.png",
+    tabColor:    "black",
+    tabPosition: "Right",
+    hide_tab:    "true"
+  });
+}
+</script>
+END
+
+      out.respond_to?(:html_safe) ? out.html_safe : out
+    end
+
   end
 
 end
